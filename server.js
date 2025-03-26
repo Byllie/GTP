@@ -37,18 +37,29 @@ app.get("/api/protocolsName", (req, res) => {
   });
 });
 
+
+
 app.get("/api/guessprotocol/*", (req, res) => {
   var reqName = req.params[0];
   var reqProtocol = getProtocolByName(reqName);
 
   reqProtocol.then((protocol) => {
     res.json({reqName: protocol});
-    console.log(reqName);
-    console.log(reqName);
   });
 });
 
 app.listen(PORT, () => {
+  console.log('DB started');
+  startDB();
+  
+
+  var listNames = getProtocolsName();
+  listNames.then((listNames) => {
+    const POTD = listNames[Math.floor(Math.random() * listNames.length)];
+    console.log('Protocol of the day:', POTD); 
+  });
+  
+
   console.log(`Serveur démarré sur http://localhost:${PORT}`);
 });
 
@@ -67,8 +78,13 @@ async function startDB() {
     console.error('DB error:', err);
   }
 }
-startDB();
-console.log("a");
+
+
+
+
+
+
+
 
 async function getProtocolsName() {
   try {
