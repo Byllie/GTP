@@ -12,6 +12,11 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid2';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -156,4 +161,71 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
+
+function BasicButtons() {
+  return (
+    <Stack spacing={2} direction="row">
+      <Button variant="outlined">Outlined</Button>
+    </Stack>
+  );
+}
+
+function BasicTextFields() {
+  return (
+    <Box
+      component="form"
+      sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
+      noValidate
+      autoComplete="off"
+    >
+      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+    </Box>
+  );
+}
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+  ...theme.applyStyles('dark', {
+    backgroundColor: '#1A2027',
+  }),
+}));
+
+function BasicGrid() {
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={2}>
+        <Grid size={8}>
+          <BasicTextFields />
+        </Grid>
+        <Grid size={4}>
+          <BasicButtons />
+        </Grid>
+        <Grid size={4}>
+          <Item>size=4</Item>
+        </Grid>
+        <Grid size={8}>
+          <Item>size=8</Item>
+        </Grid>
+      </Grid>
+    </Box>
+  );
+}
+
+function App() {
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <ResponsiveAppBar />
+      <BasicButtons />
+      <BasicTextFields />
+      <BasicGrid />
+    </Box>
+  );
+}
+
+
+export default App;
+
