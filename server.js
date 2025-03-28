@@ -6,6 +6,15 @@ const Schema = mongoose.Schema;
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+var today_protocol = {
+  name: "HTTP",
+  layer: 7,
+  dateCreated: 2025,
+  RFC: 1000,
+  wiki: "https://en.wikipedia.org/wiki/HTTP",
+  cours: ["IP"]  // This ensures `cours` is an array of strings
+};
+
 const protocolsSchema = new mongoose.Schema({
   name: String,
   layer: Number,
@@ -32,7 +41,7 @@ app.get("/", (req, res) => {
 
 app.get("/api/protocolsName", (req, res) => {
   var listNames = getProtocolsName();
-  listNames.then((listNames) => {
+  listNames.then((listNames) => {    
     res.json({listNames: listNames });
   });
 });
@@ -42,9 +51,66 @@ app.get("/api/protocolsName", (req, res) => {
 app.get("/api/guessprotocol/*", (req, res) => {
   var reqName = req.params[0];
   var reqProtocol = getProtocolByName(reqName);
+  var dic_comp = {};
+  
+  if (reqProtocol["layer"] > today_protocol["layer"]) {
+    dic_comp["layer"] = "lower";
+  }
+  else if (reqProtocol["layer"] < today_protocol["layer"]) {
+    dic_comp["layer"] = "higher";
+  }
+  else {
+    dic_comp["layer"] = "equal";
+  }
+  if (reqProtocol["dateCreated"] > today_protocol["dateCreated"]) {
+    dic_comp["dateCreated"] = "lower";
+  }
+  else if (reqProtocol["dateCreated"] < today_protocol["dateCreated"]) {
+    dic_comp["dateCreated"] = "higher";
+  }
+  else {
+    dic_comp["dateCreated"] = "equal";
+  }
+  if (reqProtocol["RFC"] > today_protocol["RFC"]) {
+    dic_comp["RFC"] = "lower";
+  }
+  else if (reqProtocol["RFC"] < today_protocol["RFC"]) {
+    dic_comp["RFC"] = "higher";
+  }
+  else {
+    dic_comp["RFC"] = "equal";
+  }
+  const list_req_prot = reqProtocol["cours"];
+  let count;
+  for (let x in list_req_prot) {
+    if (list_req_prot[x] === today_protocol["name"]) {
+      count += 1;
+    }
+  }
+  if (count === list_req_prot.length) {
+    dic_comp["cours"] = "equal";
+  }
+  else if (count > 0) {
+    dic_comp["cours"] = "partial";
+  }
+  else {
+    dic_comp["cours"] = "different";
+  }
+  if (reqProtocol["wiki"] === today_protocol["wiki"]) {
+    dic_comp["wiki"] = "equal";
+  }
+  else {
+    dic_comp["wiki"] = "different";
+  }
+  if (reqProtocol["name"] === today_protocol["name"]) {
+    dic_comp["name"] = "equal";
+  }
+  else {
+    dic_comp["name"] = "different";
+  }
 
   reqProtocol.then((protocol) => {
-    res.json({reqName: protocol});
+    res.json({reqName: protocol, dic_comp: dic_comp});
   });
 });
 
