@@ -1,3 +1,4 @@
+import './App.css';
 import * as React from 'react';
 import { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
@@ -17,12 +18,16 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios';
-import { getElementError } from '@testing-library/dom';
-import { SettingsOverscanOutlined } from '@mui/icons-material';
 
+const BackgroundBox = styled(Box)({
+  backgroundImage: `url(/test.jpg)`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  height: '100vh',
+});
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const fetcher = (...args) => fetch(...args).then(res => res.json())
@@ -36,6 +41,7 @@ const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: '#1A2027',
   }),
 }));
+
 var protocol_list = [{}];
 var guess_prot = "";
 
@@ -180,34 +186,74 @@ function ResponsiveAppBar() {
   );
 }
 
-function InputValidateButtons({label_val}) {
-  const [data, setData] = useState([]);
-
-  const ask_prot = () => {
-    console.log(guess_prot)
-    axios.get('api/'+guess_prot)
-    .then(response => {
-      setData(response.data);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-
-    if (data === "OK") {
-      alert("Protocole trouvé");
-    }
-    else {
-      alert("Protocole non trouvé");
-    }
-  }
+function CriteriaSquares({ show }) {
+  if (!show) return null;
 
   return (
-    <Stack spacing={2} direction="row">
-      <Button variant="outlined" onClick={ask_prot}>Valider</Button>
-    </Stack>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        mt: 2, // Add some margin-top to separate it from the button
+      }}
+    >
+      <Grid container spacing={2} justifyContent="center">
+        {['Criteria 1', 'Criteria 2', 'Criteria 3', 'Criteria 4', 'Criteria 5'].map((criteria, index) => (
+          <Grid item key={index}>
+            <Item
+              sx={{
+                width: 100,
+                height: 100,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: index % 2 === 0 ? '#4CAF50' : '#FFC107',
+              }}
+            >
+              {criteria}
+            </Item>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 }
 
+function InputValidateButtons({ label_val }) {
+  const [showCriteria, setShowCriteria] = useState(false);
+  const [data, setData] = useState([]);
+
+  const ask_prot = () => {
+    if (!guess_prot) {
+      alert("Veuillez sélectionner un protocole.");
+      return;
+    }
+    console.log(guess_prot);
+    setShowCriteria(true);
+  
+    axios.get('api/' + guess_prot)
+      .then(response => {
+        if (response.data === "OK") {
+          alert("Protocole trouvé");
+        } else {
+          alert("Protocole non trouvé");
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  return (
+    <Box>
+      <Stack spacing={2} direction="row">
+        <Button variant="outlined" onClick={ask_prot}>Valider</Button>
+      </Stack>
+      <CriteriaSquares show={showCriteria} />
+    </Box>
+  );
+}
 
 function InputTextField() {
   const [data, setData] = useState([]);
@@ -222,30 +268,48 @@ function InputTextField() {
       });
   }
 
-  protocol_list = data
-  protocol_list = ["Bonjour","Banane"]
-  
+  protocol_list = data;
+  protocol_list = ["Bonjour", "Banane", "haha"];
+
   return (
     <Autocomplete
       disablePortal
       options={protocol_list}
       sx={{ width: 300 }}
-      onChange = {(event, newValue) => guess_prot = newValue}
-      renderInput={(params) => <TextField {...params}id='input1' label="Entrée" variant="outlined" onFocus={fetchData} />}
+      onChange={(event, newValue) => guess_prot = newValue}
+      renderInput={(params) => <TextField {...params} id='input1' label="Entrée" variant="outlined" onFocus={fetchData} />}
     />
   );
 }
 
 function BasicGrid() {
+  const [showCriteria, setShowCriteria] = useState(false);
+
+  const handleShowCriteria = () => {
+    setShowCriteria(true); // Trigger showing the criteria squares
+  };
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, p: 3 }}>
       <Grid container spacing={2}>
-        <Grid display="flex" justifyContent="right" alignItems="right" size="grow">
+        {/* Input Text Field */}
+        <Grid item xs={12} display="flex" justifyContent="center" alignItems="center">
           <InputTextField />
         </Grid>
-        <Grid display="flex" justifyContent="left" alignItems="left" size="grow">
-          <InputValidateButtons />
+
+        {/* Validation Button */}
+        <Grid item xs={12} display="flex" justifyContent="center" alignItems="center">
+          <InputValidateButtons variant="outlined" onClick={handleShowCriteria}>
+            Valider
+          </InputValidateButtons>
         </Grid>
+
+        {/* Criteria Squares */}
+        {showCriteria && (
+        <Grid item xs={12} display="flex" justifyContent="center" alignItems="center">
+          <CriteriaSquares />
+        </Grid>
+        )}
       </Grid>
     </Box>
   );
@@ -253,12 +317,11 @@ function BasicGrid() {
 
 function App() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <BackgroundBox>
       <ResponsiveAppBar />
       <BasicGrid />
-    </Box>
+    </BackgroundBox>
   );
 }
-
 
 export default App;
