@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,9 +13,31 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid2';
+import Autocomplete from '@mui/material/Autocomplete';
+import axios from 'axios';
+import { getElementError } from '@testing-library/dom';
+import { SettingsOverscanOutlined } from '@mui/icons-material';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const fetcher = (...args) => fetch(...args).then(res => res.json())
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+  ...theme.applyStyles('dark', {
+    backgroundColor: '#1A2027',
+  }),
+}));
+var protocol_list = [{}];
+var guess_prot = "";
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -156,4 +179,86 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
+
+function InputValidateButtons({label_val}) {
+  const [data, setData] = useState([]);
+
+  const ask_prot = () => {
+    console.log(guess_prot)
+    axios.get('api/'+guess_prot)
+    .then(response => {
+      setData(response.data);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
+    if (data === "OK") {
+      alert("Protocole trouvé");
+    }
+    else {
+      alert("Protocole non trouvé");
+    }
+  }
+
+  return (
+    <Stack spacing={2} direction="row">
+      <Button variant="outlined" onClick={ask_prot}>Valider</Button>
+    </Stack>
+  );
+}
+
+
+function InputTextField() {
+  const [data, setData] = useState([]);
+
+  const fetchData = () => {
+    axios.get('api/protocols_list')
+      .then(response => {
+        setData(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  protocol_list = data
+  protocol_list = ["Bonjour","Banane"]
+  
+  return (
+    <Autocomplete
+      disablePortal
+      options={protocol_list}
+      sx={{ width: 300 }}
+      onChange = {(event, newValue) => guess_prot = newValue}
+      renderInput={(params) => <TextField {...params}id='input1' label="Entrée" variant="outlined" onFocus={fetchData} />}
+    />
+  );
+}
+
+function BasicGrid() {
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={2}>
+        <Grid display="flex" justifyContent="right" alignItems="right" size="grow">
+          <InputTextField />
+        </Grid>
+        <Grid display="flex" justifyContent="left" alignItems="left" size="grow">
+          <InputValidateButtons />
+        </Grid>
+      </Grid>
+    </Box>
+  );
+}
+
+function App() {
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <ResponsiveAppBar />
+      <BasicGrid />
+    </Box>
+  );
+}
+
+
+export default App;
