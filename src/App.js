@@ -42,8 +42,9 @@ const Item = styled(Paper)(({ theme }) => ({
   }),
 }));
 
-var protocol_list = [{}];
-var guess_prot = "";
+let protocol_list = [{}];
+let guess_prot = "";
+let show_criteria = false;
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -221,7 +222,6 @@ function CriteriaSquares({ show }) {
 }
 
 function InputValidateButtons({ label_val }) {
-  const [showCriteria, setShowCriteria] = useState(false);
   const [data, setData] = useState([]);
 
   const ask_prot = () => {
@@ -230,7 +230,7 @@ function InputValidateButtons({ label_val }) {
       return;
     }
     console.log(guess_prot);
-    setShowCriteria(true);
+    show_criteria = true;
   
     axios.get('api/' + guess_prot)
       .then(response => {
@@ -247,10 +247,7 @@ function InputValidateButtons({ label_val }) {
 
   return (
     <Box>
-      <Stack spacing={2} direction="row">
-        <Button variant="outlined" onClick={ask_prot}>Valider</Button>
-      </Stack>
-      <CriteriaSquares show={showCriteria} />
+      <Button sx={{ bgcolor: 'white' }} variant="outlined" onClick={ask_prot}>Valider</Button>
     </Box>
   );
 }
@@ -277,18 +274,12 @@ function InputTextField() {
       options={protocol_list}
       sx={{ width: 300 }}
       onChange={(event, newValue) => guess_prot = newValue}
-      renderInput={(params) => <TextField {...params} id='input1' label="Entrée" variant="outlined" onFocus={fetchData} />}
+      renderInput={(params) => <TextField {...params} sx={{ border: 1, bgcolor: 'white' }}  id='input1' label="Entrée" variant="filled" color="success" onFocus={fetchData} />}
     />
   );
 }
 
 function BasicGrid() {
-  const [showCriteria, setShowCriteria] = useState(false);
-
-  const handleShowCriteria = () => {
-    setShowCriteria(true); // Trigger showing the criteria squares
-  };
-
   return (
     <Box sx={{ flexGrow: 1, p: 3 }}>
       <Grid container spacing={2}>
@@ -297,20 +288,12 @@ function BasicGrid() {
           <InputTextField />
         </Grid>
 
-        {/* Validation Button */}
         <Grid item xs={12} display="flex" justifyContent="center" alignItems="center">
-          <InputValidateButtons variant="outlined" onClick={handleShowCriteria}>
-            Valider
-          </InputValidateButtons>
+          <InputValidateButtons />
         </Grid>
 
-        {/* Criteria Squares */}
-        {showCriteria && (
-        <Grid item xs={12} display="flex" justifyContent="center" alignItems="center">
-          <CriteriaSquares />
-        </Grid>
-        )}
       </Grid>
+      <CriteriaSquares show={show_criteria} />
     </Box>
   );
 }
