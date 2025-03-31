@@ -148,7 +148,12 @@ async function startDB() {
 
 async function getProtocolsName() {
   try {
+    try {
     const protocols = await ProtocolsCollection.find();
+    } catch (err) {
+      console.log('Error fetching protocols:', err);
+      return [];
+    }
     console.log(protocols[0].protocols.length);
     let listNames = [];
     for (let i = 0; i < protocols[0].protocols.length; i++) {
@@ -163,7 +168,7 @@ async function getProtocolsName() {
 async function getProtocolByName(protocolName) {
   try {
     const result = await ProtocolsCollection.findOne({ "protocols.name": protocolName });
-
+    console.log('Resultat:', result);
     if (result) {
       const protocol = result.protocols.find(p => p.name === protocolName);
       console.log('Protocole trouvé:', protocol);
