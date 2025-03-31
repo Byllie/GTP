@@ -33,7 +33,7 @@ app.get("/", (req, res) => {
 
 app.get("/api/protocolsName", (req, res) => {
   let listNames = getProtocolsName();
-  listNames.then((listNames) => {    
+  listNames.then((listNames) => {
     res.json({listNames: listNames });
   });
 });
@@ -43,6 +43,7 @@ app.get("/api/protocolsName", (req, res) => {
 app.get("/api/guessprotocol/*", (req, res) => {
   let reqName = req.params[0];
   let reqProtocol = getProtocolByName(reqName);
+
   let dic_comp = {};
   console.log(reqName);
 
@@ -101,6 +102,7 @@ app.get("/api/guessprotocol/*", (req, res) => {
   else {
     dic_comp["name"] = "different";
   }
+
 
   reqProtocol.then((protocol) => {
     console.log({reqName: protocol, dic_comp: dic_comp})
