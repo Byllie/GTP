@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/protocolsName", (req, res) => {
-  var listNames = getProtocolsName();
+  let listNames = getProtocolsName();
   listNames.then((listNames) => {    
     res.json({listNames: listNames });
   });
@@ -41,9 +41,10 @@ app.get("/api/protocolsName", (req, res) => {
 
 
 app.get("/api/guessprotocol/*", (req, res) => {
-  var reqName = req.params[0];
-  var reqProtocol = getProtocolByName(reqName);
-  var dic_comp = {};
+  let reqName = req.params[0];
+  let reqProtocol = getProtocolByName(reqName);
+  let dic_comp = {};
+  console.log(reqName);
 
   if (reqProtocol["layer"] > POTD["layer"]) {
     dic_comp["layer"] = "lower";
@@ -102,6 +103,7 @@ app.get("/api/guessprotocol/*", (req, res) => {
   }
 
   reqProtocol.then((protocol) => {
+    console.log({reqName: protocol, dic_comp: dic_comp})
     res.json({reqName: protocol, dic_comp: dic_comp});
   });
 });
@@ -111,7 +113,7 @@ app.listen(PORT, () => {
   startDB();
   
 
-  var listNames = getProtocolsName();
+  let listNames = getProtocolsName();
   listNames.then((listNames) => {
     POTD = listNames[Math.floor(Math.random() * listNames.length)];
     console.log('Protocol of the day:', POTD); 
