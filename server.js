@@ -167,7 +167,13 @@ async function getProtocolsName() {
 
 async function getProtocolByName(protocolName) {
   try {
-    const result = await ProtocolsCollection.findOne({ "protocols.name": protocolName });
+    try {
+      const result = await ProtocolsCollection.findOne({ "protocols.name": protocolName });
+      } catch (err) {
+        console.log('Error fetching protocols:', err);
+        return [];
+      }
+    
     console.log('Resultat:', result);
     if (result) {
       const protocol = result.protocols.find(p => p.name === protocolName);
