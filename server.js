@@ -46,65 +46,63 @@ app.get("/api/guessprotocol/*", (req, res) => {
 
   let dic_comp = {};
   console.log(reqName);
-
-  if (reqProtocol["layer"] > POTD["layer"]) {
-    dic_comp["layer"] = "lower";
-  }
-  else if (reqProtocol["layer"] < POTD["layer"]) {
-    dic_comp["layer"] = "higher";
-  }
-  else {
-    dic_comp["layer"] = "equal";
-  }
-  if (reqProtocol["dateCreated"] > POTD["dateCreated"]) {
-    dic_comp["dateCreated"] = "lower";
-  }
-  else if (reqProtocol["dateCreated"] < POTD["dateCreated"]) {
-    dic_comp["dateCreated"] = "higher";
-  }
-  else {
-    dic_comp["dateCreated"] = "equal";
-  }
-  if (reqProtocol["RFC"] > POTD["RFC"]) {
-    dic_comp["RFC"] = "lower";
-  }
-  else if (reqProtocol["RFC"] < POTD["RFC"]) {
-    dic_comp["RFC"] = "higher";
-  }
-  else {
-    dic_comp["RFC"] = "equal";
-  }
-  const list_req_prot = reqProtocol["cours"];
-  let count;
-  for (let x in list_req_prot) {
-    if (list_req_prot[x] === POTD["name"]) {
-      count += 1;
-    }
-  }
-  if (count === list_req_prot.length) {
-    dic_comp["cours"] = "equal";
-  }
-  else if (count > 0) {
-    dic_comp["cours"] = "partial";
-  }
-  else {
-    dic_comp["cours"] = "different";
-  }
-  if (reqProtocol["wiki"] === POTD["wiki"]) {
-    dic_comp["wiki"] = "equal";
-  }
-  else {
-    dic_comp["wiki"] = "different";
-  }
-  if (reqProtocol["name"] === POTD["name"]) {
-    dic_comp["name"] = "equal";
-  }
-  else {
-    dic_comp["name"] = "different";
-  }
-
-
+  
   reqProtocol.then((protocol) => {
+    if (reqProtocol["layer"] > POTD["layer"]) {
+      dic_comp["layer"] = "lower";
+    }
+    else if (reqProtocol["layer"] < POTD["layer"]) {
+      dic_comp["layer"] = "higher";
+    }
+    else {
+      dic_comp["layer"] = "equal";
+    }
+    if (reqProtocol["dateCreated"] > POTD["dateCreated"]) {
+      dic_comp["dateCreated"] = "lower";
+    }
+    else if (reqProtocol["dateCreated"] < POTD["dateCreated"]) {
+      dic_comp["dateCreated"] = "higher";
+    }
+    else {
+      dic_comp["dateCreated"] = "equal";
+    }
+    if (reqProtocol["RFC"] > POTD["RFC"]) {
+      dic_comp["RFC"] = "lower";
+    }
+    else if (reqProtocol["RFC"] < POTD["RFC"]) {
+      dic_comp["RFC"] = "higher";
+    }
+    else {
+      dic_comp["RFC"] = "equal";
+    }
+    const list_req_prot = reqProtocol["cours"];
+    let count;
+    for (let x in list_req_prot) {
+      if (list_req_prot[x] === POTD["name"]) {
+        count += 1;
+      }
+    }
+    if (count === list_req_prot.length) {
+      dic_comp["cours"] = "equal";
+    }
+    else if (count > 0) {
+      dic_comp["cours"] = "partial";
+    }
+    else {
+      dic_comp["cours"] = "different";
+    }
+    if (reqProtocol["wiki"] === POTD["wiki"]) {
+      dic_comp["wiki"] = "equal";
+    }
+    else {
+      dic_comp["wiki"] = "different";
+    }
+    if (reqProtocol["name"] === POTD["name"]) {
+      dic_comp["name"] = "equal";
+    }
+    else {
+      dic_comp["name"] = "different";
+    }
     console.log({reqName: protocol, dic_comp: dic_comp})
     res.json({reqName: protocol, dic_comp: dic_comp});
   });
@@ -152,7 +150,7 @@ async function getProtocolsName() {
   try {
     const protocols = await ProtocolsCollection.find();
     console.log(protocols[0].protocols.length);
-    listNames = [];
+    let listNames = [];
     for (let i = 0; i < protocols[0].protocols.length; i++) {
       listNames.push(protocols[0].protocols[i].name);
     }
