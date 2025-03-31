@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+let POTD = "";
 
 const protocolsSchema = new mongoose.Schema({
   name: String,
@@ -43,8 +44,69 @@ app.get("/api/guessprotocol/*", (req, res) => {
   let reqName = req.params[0];
   let reqProtocol = getProtocolByName(reqName);
 
+  let dic_comp = {};
+  console.log(reqName);
+
+  if (reqProtocol["layer"] > POTD["layer"]) {
+    dic_comp["layer"] = "lower";
+  }
+  else if (reqProtocol["layer"] < POTD["layer"]) {
+    dic_comp["layer"] = "higher";
+  }
+  else {
+    dic_comp["layer"] = "equal";
+  }
+  if (reqProtocol["dateCreated"] > POTD["dateCreated"]) {
+    dic_comp["dateCreated"] = "lower";
+  }
+  else if (reqProtocol["dateCreated"] < POTD["dateCreated"]) {
+    dic_comp["dateCreated"] = "higher";
+  }
+  else {
+    dic_comp["dateCreated"] = "equal";
+  }
+  if (reqProtocol["RFC"] > POTD["RFC"]) {
+    dic_comp["RFC"] = "lower";
+  }
+  else if (reqProtocol["RFC"] < POTD["RFC"]) {
+    dic_comp["RFC"] = "higher";
+  }
+  else {
+    dic_comp["RFC"] = "equal";
+  }
+  const list_req_prot = reqProtocol["cours"];
+  let count;
+  for (let x in list_req_prot) {
+    if (list_req_prot[x] === POTD["name"]) {
+      count += 1;
+    }
+  }
+  if (count === list_req_prot.length) {
+    dic_comp["cours"] = "equal";
+  }
+  else if (count > 0) {
+    dic_comp["cours"] = "partial";
+  }
+  else {
+    dic_comp["cours"] = "different";
+  }
+  if (reqProtocol["wiki"] === POTD["wiki"]) {
+    dic_comp["wiki"] = "equal";
+  }
+  else {
+    dic_comp["wiki"] = "different";
+  }
+  if (reqProtocol["name"] === POTD["name"]) {
+    dic_comp["name"] = "equal";
+  }
+  else {
+    dic_comp["name"] = "different";
+  }
+
+
   reqProtocol.then((protocol) => {
-    res.json({reqName: protocol});
+    console.log({reqName: protocol, dic_comp: dic_comp})
+    res.json({reqName: protocol, dic_comp: dic_comp});
   });
 });
 
@@ -55,7 +117,7 @@ app.listen(PORT, () => {
 
   let listNames = getProtocolsName();
   listNames.then((listNames) => {
-    const POTD = listNames[Math.floor(Math.random() * listNames.length)];
+    POTD = listNames[Math.floor(Math.random() * listNames.length)];
     console.log('Protocol of the day:', POTD); 
   });
   
