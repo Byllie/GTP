@@ -31,7 +31,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/protocolsName", (req, res) => {
-  var listNames = getProtocolsName();
+  let listNames = getProtocolsName();
   listNames.then((listNames) => {
     res.json({listNames: listNames });
   });
@@ -40,8 +40,8 @@ app.get("/api/protocolsName", (req, res) => {
 
 
 app.get("/api/guessprotocol/*", (req, res) => {
-  var reqName = req.params[0];
-  var reqProtocol = getProtocolByName(reqName);
+  let reqName = req.params[0];
+  let reqProtocol = getProtocolByName(reqName);
 
   reqProtocol.then((protocol) => {
     res.json({reqName: protocol});
@@ -53,7 +53,7 @@ app.listen(PORT, () => {
   startDB();
   
 
-  var listNames = getProtocolsName();
+  let listNames = getProtocolsName();
   listNames.then((listNames) => {
     const POTD = listNames[Math.floor(Math.random() * listNames.length)];
     console.log('Protocol of the day:', POTD); 
