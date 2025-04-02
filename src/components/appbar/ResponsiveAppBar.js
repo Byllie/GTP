@@ -12,8 +12,10 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { Link } from "react-router-dom";
 
-const pages = ['Mode 1', 'Mode 2', 'Mode 3'];
+
+const pages = ['Protocoles', 'Articles', 'Acceuil'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export default function ResponsiveAppBar() {
@@ -115,7 +117,8 @@ export default function ResponsiveAppBar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                component={Link}
+                to={page.toLowerCase()} // Convertit 'Protocoles' en '/protocoles'
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}

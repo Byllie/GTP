@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import ResponsiveAppBar from '../components/appbar/ResponsiveAppBar';
+import BasicGrid from "../components/grid/BasicGrid";
 
 const BackgroundBox = styled(Box)({
   backgroundImage: `url(/test.jpg)`,
@@ -12,11 +12,10 @@ const BackgroundBox = styled(Box)({
   backgroundAttachment: 'fixed', // Ensures the background doesn't zoom out on updates
 });
 
-export default function MainLayout({ children }) {
+export default function MainLayout() {
   return (
     <BackgroundBox>
-      <ResponsiveAppBar />
-      {children}
+      <BasicGrid/>
     </BackgroundBox>
   );
 }
