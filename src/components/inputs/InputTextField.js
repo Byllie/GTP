@@ -7,9 +7,10 @@ export default function InputTextField({ onProtocolSelect }) {
   const [protocols, setProtocols] = useState([]);
 
   const fetchProtocols = () => {
-    axios.get('api/protocols_list')
+    axios.get('/api/protocolsName')
       .then(response => {
-        setProtocols(response.data);
+        setProtocols(response.data.listNames);
+        console.log(response.data.listNames)
       })
       .catch(error => {
         console.log(error);
