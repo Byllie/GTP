@@ -10,20 +10,13 @@ export default function InputValidateButtons({ protocol, onApiResult }) {
       return;
     }
     
-    axios.get('api/' + protocol)
+    axios.get('api/guessprotocol/' + protocol)
       .then(response => {
-        if (response.data && response.data === "OK") {
-          alert("Protocole trouvé");
-          onApiResult(false);
-        } else {
-          alert("Protocole non trouvé");
-          onApiResult(true);
-        }
+          console.log(response.data);
       })
       .catch(error => {
         console.error("API Error:", error);
         alert("Erreur de connexion au serveur.");
-        onApiResult(true);
       });
   };
 
