@@ -7,7 +7,9 @@ const BackgroundBox = styled(Box)({
   backgroundImage: `url(/test.jpg)`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
-  height: '100vh',
+  minHeight: '100vh',
+  overflow: 'auto',
+  backgroundAttachment: 'fixed', // Ensures the background doesn't zoom out on updates
 });
 
 export default function MainLayout({ children }) {

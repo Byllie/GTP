@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['Mode 1', 'Mode 2', 'Mode 3'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export default function ResponsiveAppBar() {
@@ -55,7 +55,7 @@ export default function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            GuessTheProtocol
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -109,7 +109,7 @@ export default function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            GTP
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
