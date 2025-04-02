@@ -12,7 +12,7 @@ export default function CriteriaSquares({ isError, protocol, timestamp }) {
   useEffect(() => {
     const interval = setInterval(() => {
       setVisibleCount(prev => prev >= allCriteria.length ? prev : prev + 1);
-    }, 1000);
+    }, 500);
 
     return () => clearInterval(interval);
   }, [allCriteria.length]);
