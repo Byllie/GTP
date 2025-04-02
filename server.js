@@ -2,14 +2,16 @@ const express = require("express");
 const path = require("path");
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+require('dotenv').config()
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 let POTD = {};
 var protocolsCollection = null;
 
-const DBusername = process.env.DBusername;
-const DBpassword = process.env.DBpassword;
+const DBusername = process.env.DB_USERNAME;
+const DBpassword = process.env.DB_PASSWORD;
 
 const protocolsSchema = new mongoose.Schema({
   name: String,
@@ -139,6 +141,8 @@ app.get("/api/guessprotocol/*", (req, res) => {
 });
 
 app.listen(PORT, () => {
+  console.log(DBpassword);
+  console.log(DBusername);
   startDB().then((a) => {
     let listNames = getProtocolsName();
     listNames.then((listNames) => {
@@ -201,6 +205,10 @@ async function getProtocolsName() {
   try {
     let protocols = null;
     try {
+      if (!protocolsCollection) {
+        console.log('Protocols collection is not initialized');
+        return null;
+      }
       protocols = await protocolsCollection.find().toArray();
 
     } catch (err) {
@@ -229,6 +237,10 @@ async function getProtocolByName(protocolName) {
   try {
     let result = null;
     try {
+      if (!protocolsCollection) {
+        console.log('Protocols collection is not initialized');
+        return null;
+      }
       result = await protocolsCollection.findOne({ "name": protocolName });
     } catch (err) {
       console.log('Error fetching protocols:', err);
