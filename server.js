@@ -8,8 +8,8 @@ const PORT = process.env.PORT || 3000;
 let POTD = {};
 var protocolsCollection = null;
 
-const DBusername = "GTPuser";
-const DBpassword = "WEBpassword";
+const DBusername = process.env.DBusername;
+const DBpassword = process.env.DBpassword;
 
 const protocolsSchema = new mongoose.Schema({
   name: String,
