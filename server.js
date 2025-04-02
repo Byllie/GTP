@@ -141,8 +141,8 @@ app.get("/api/guessprotocol/*", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(DBpassword);
-  console.log(DBusername);
+  // console.log(DBpassword);
+  // console.log(DBusername);
   startDB().then((a) => {
     let listNames = getProtocolsName();
     listNames.then((listNames) => {
