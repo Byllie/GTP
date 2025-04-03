@@ -14,7 +14,7 @@ const BackgroundBox = styled(Box)({
 
 export default function MainLayout() {
   return (
-    <BackgroundBox>
-    </BackgroundBox>
+    <BackgroundBox />
+
   );
 }

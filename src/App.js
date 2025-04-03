@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Protocoles from "./layouts/Protocoles";
 import Articles from "./layouts/Articles";
-import Acceuil from "./layouts/Acceuil"
+import Home from "./layouts/home"
 import ResponsiveAppBar from "./components/appbar/ResponsiveAppBar";
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
     <Router>
       <ResponsiveAppBar />
       <Routes>
-        <Route path="/acceuil" element={<Acceuil />} />
+        <Route path="/" element={<Home />} />
         <Route path="/protocoles" element={<Protocoles />} />
         <Route path="/articles" element={<Articles />} />
       </Routes>
