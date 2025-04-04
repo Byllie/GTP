@@ -4,6 +4,7 @@ import Protocoles from "./layouts/Protocoles";
 import Articles from "./layouts/Articles";
 import Home from "./layouts/home"
 import ResponsiveAppBar from "./components/appbar/ResponsiveAppBar";
+import NotFound from "./layouts/NotFound"
 import { useLocation } from "react-router-dom";
 
 
@@ -20,6 +21,7 @@ function Layout() {
         <Route path="/" element={<Home />} />
         <Route path="/protocoles" element={<Protocoles />} />
         <Route path="/articles" element={<Articles />} />
+        <Route path="/*" element={<NotFound/>}/>
       </Routes>
     </>
   );

@@ -37,13 +37,16 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
+app.get(/^\/(?!api(?:\/|$)).*$/, (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+})
+
 app.get("/api/protocols", (req, res) => {
   let listProtocols = ProtocolsCollection.find();
   listProtocols.then((listProtocols) => {
     res.json({listProtocols: listProtocols });
   });
-}
-);
+});
 
 app.get("/api/protocolsName", (req, res) => {
   let listNames = getProtocolsName();
@@ -168,9 +171,6 @@ app.listen(PORT, () => {
   console.log(`Serveur démarré sur http://localhost:${PORT}`);
 });
 
-app.post("*", (req, res) => {
-  res.json({ message: "Pas encore de DB" });
-});
 
 async function startDB() {
   try {

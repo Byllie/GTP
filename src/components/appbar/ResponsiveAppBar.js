@@ -79,8 +79,8 @@ export default function ResponsiveAppBar() {
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
+                <MenuItem key={page} onClick={handleCloseNavMenu} >
+                  <Typography sx={{ textAlign: 'center' }} component={Link} to={`/${page.toLowerCase()}`}>{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
