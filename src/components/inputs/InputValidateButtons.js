@@ -13,6 +13,7 @@ export default function InputValidateButtons({ protocol, onApiResult }) {
     axios.get('api/guessprotocol/' + protocol)
       .then(response => {
           console.log(response.data);
+          onApiResult(response.data);
       })
       .catch(error => {
         console.error("API Error:", error);

@@ -13,14 +13,14 @@ export default function BasicGrid() {
     setSelectedProtocol(protocol);
   };
 
-  const handleApiResult = (isError) => {
+  const handleApiResult = (response_data) => {
     // Add a new row to the beginning of the array (to show on top)
     setSquareRows(prevRows => [
       { 
         id: Date.now(), // Unique identifier for each row
-        isError: isError,
         protocol: selectedProtocol,
-        timestamp: new Date().toLocaleTimeString()
+        timestamp: new Date().toLocaleTimeString(),
+        response_data: response_data
       },
       ...prevRows // Keep previous rows below
     ]);
@@ -45,9 +45,9 @@ export default function BasicGrid() {
       {squareRows.map((row) => (
         <CriteriaSquares 
           key={row.id} 
-          isError={row.isError} 
           protocol={row.protocol}
           timestamp={row.timestamp}
+          response_data={row.response_data}
         />
       ))}
     </Box>
