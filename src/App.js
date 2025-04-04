@@ -1,25 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Protocoles from "./layouts/Protocoles";
+import Articles from "./layouts/Articles";
+import Acceuil from "./layouts/Acceuil"
+import ResponsiveAppBar from "./components/appbar/ResponsiveAppBar";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <ResponsiveAppBar />
+      <Routes>
+        <Route path="/acceuil" element={<Acceuil />} />
+        <Route path="/protocoles" element={<Protocoles />} />
+        <Route path="/articles" element={<Articles />} />
+      </Routes>
+    </Router>
   );
 }
-
 export default App;
+
