@@ -24,6 +24,7 @@ export default function InputTextField({ onProtocolSelect }) {
       onProtocolSelect(newValue);
     }
     // Empty input won't trigger any state change
+    
   };
 
   return (

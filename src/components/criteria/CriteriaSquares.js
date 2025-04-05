@@ -11,6 +11,8 @@ export default function CriteriaSquares({protocol, timestamp,response_data}) {
   const allCriteria = [response_data.reqName.layer,response_data.reqName.dateCreated,response_data.reqName.RFC,response_data.reqName.cours,response_data.reqName.name,response_data.reqName.wiki];
   const matches = [response_data.dic_comp.layer,response_data.dic_comp.dateCreated,response_data.dic_comp.RFC,response_data.dic_comp.cours,response_data.dic_comp.name,response_data.dic_comp.wiki]
   const color =[];
+  const labels = ["Layer", "Date Created", "RFC", "Cours", "Name", "Wiki"];
+
   for(const match of matches){
     if (match==="different" || match==="lower" || match==="higher"){
       color.push("#FF5252");
@@ -49,6 +51,7 @@ export default function CriteriaSquares({protocol, timestamp,response_data}) {
       <Grid2 container spacing={2} className="criteria-grid">
         {allCriteria.map((criteria, index) => (
           <Grid2 item key={index}>
+            <div className ="criteria-label">{labels[index]}</div>
             <Paper
               className={getItemClass(index)}
               style={{ opacity: index < visibleCount ? 1 : 0 , "background-color": color[index] }}
