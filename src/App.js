@@ -11,7 +11,6 @@ import { useLocation } from "react-router-dom";
 function Layout() {
   const location = useLocation(); // Récupère l'URL actuelle
 
-  // Vérifie si on est sur la page d'accueil
   const hideNavbar = location.pathname === "/";
 
   return (
