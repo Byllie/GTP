@@ -18,7 +18,7 @@ export default function MainLayout() {
     <BackgroundBox className="centered-container">
       <div className="header-container">
       <img
-          src="/guess_the_protocol.png"
+          src="/titre_crop.png"
           alt="Guess the Protocol Logo"
           className="logo-image"
         />
