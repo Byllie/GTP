@@ -36,6 +36,9 @@ export default function CriteriaSquares({protocol, timestamp,response_data}) {
     let baseClass = 'criteria-item';
     return index % 2 === 0 ? `${baseClass} even` : `${baseClass} odd`;
   };
+  const cours = response_data.reqName.cours;
+  const coursDisplay = Array.isArray(cours) ? cours.join(' ') : cours;
+
 
   return (
     <Box className="criteria-container">
@@ -53,7 +56,7 @@ export default function CriteriaSquares({protocol, timestamp,response_data}) {
               style={{ opacity: index < visibleCount ? 1 : 0 , "background-color": color[index] }}
             >
               {matches[index] === "higher" ? "⬆️ " : matches[index] === "lower" ? "⬇️ " : ""}
-              {criteria}
+              {index === 4 ? coursDisplay : criteria}
             </Paper>
           </Grid2>
         ))}
