@@ -1,0 +1,45 @@
+.centered-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 4% 4%; /* un peu de marge sur les côtés sur mobile */
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.header-container {
+  margin-bottom: 3%;
+}
+
+.logo-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  margin: 0 auto 2%;
+  display: block;
+}
+
+
+.subtitle {
+  font-size: 2vw;
+  color: white;
+  font-family: 'Georgia', serif;
+  font-weight: 400;
+  text-shadow: 0 0 0.3vw rgba(0, 0, 0, 0.8);
+}
+
+/* RESPONSIVE ADJUSTMENTS */
+@media screen and (max-width: 800px) {
+  .subtitle {
+    font-size: 18px; 
+  }
+  .logo-image {
+    width: 90%;
+  }
+
+  .header-container {
+    margin-bottom: 4%;
+  }
+}
