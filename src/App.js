@@ -1,3 +1,4 @@
+import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Protocoles from "./layouts/Protocoles";
@@ -26,10 +27,13 @@ function Layout() {
   );
 }
 
-export default function App() {
+function App() {
   return (
     <Router>
       <Layout />
     </Router>
   );
 }
+
+export default App;
+
