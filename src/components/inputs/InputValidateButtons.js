@@ -29,11 +29,11 @@ export default function InputValidateButtons({ protocol, onApiResult }) {
   };
 
   const criteriaLabels = [
+    "Nom",
     "Layer",
     "Date de création",
     "RFC",
     "Cours",
-    "Nom",
     "Wiki"
   ];
 
@@ -49,15 +49,15 @@ export default function InputValidateButtons({ protocol, onApiResult }) {
       </Button>
 
       {showCriteria && (
-      <Grid2 container spacing={2} className="criteria-grid">
+      <Grid2 container spacing={2} className="criteria-grid" alignItems="center">
         {criteriaLabels.map((label, index) => (
-          <Grid2 item key={index}>
-            <div className="criteria-item-wrapper">
-              <Typography className="criteria-label">{label}</Typography>
+          <Grid2 item key={index} xs={4}>
+            <div className="criteria-item">
+              <Typography>{label}</Typography>
             </div>
           </Grid2>
         ))}
-      </Grid2>
+    </Grid2>
       )}
     </Box>
   );

@@ -1,0 +1,26 @@
+.criteria-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    }
+
+.criteria-grid {
+    justify-content: center;
+  }
+  
+  .criteria-item-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .criteria-label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 6px;
+  }
+  
