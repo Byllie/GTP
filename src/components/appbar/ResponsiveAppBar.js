@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from "react-router-dom";
-
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const pages = ['Protocoles', 'Articles'];
 
@@ -22,6 +22,14 @@ export default function ResponsiveAppBar() {
     setAnchorElNav(event.currentTarget);
   };
 
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+      primary: {
+        main: '#04060D',
+      },
+    },
+  });
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -29,10 +37,11 @@ export default function ResponsiveAppBar() {
 
 
   return (
-    <AppBar position="static">
+    <ThemeProvider theme={darkTheme}>
+    <AppBar position="static" color="primary">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          
+          <img src="/titre_crop.png" alt="Logo" style={{ width: '20%', height: '20%', marginRight: '1%' }} />
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -102,5 +111,6 @@ export default function ResponsiveAppBar() {
         </Toolbar>
       </Container>
     </AppBar>
+    </ThemeProvider>
   );
 }
