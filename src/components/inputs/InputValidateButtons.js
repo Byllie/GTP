@@ -6,6 +6,35 @@ import axios from 'axios';
 import "./InputValidateButtons.css";
 import { Grid2 } from '@mui/material';
 import Paper from '@mui/material/Paper';
+import { createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@emotion/react';
+
+const darkTheme = createTheme({
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          backgroundColor : '#7BA1A6',
+          color: '#f4f6fb' // couleur texte par défaut
+        },
+      },
+    },
+  },
+  palette: {
+    background: {
+      main: '#04060D',
+    },
+    primary: {
+      main: '#3F5B73',
+    },
+    text: {
+      main: '#f4f6fb',
+    },
+    secondary: {
+      main: '#7BA1A6',
+    },
+  },
+});
 
 export default function InputValidateButtons({ protocol, onApiResult }) {
   const [showCriteria, setShowCriteria] = useState(false);
@@ -38,10 +67,11 @@ export default function InputValidateButtons({ protocol, onApiResult }) {
 
 
   return (
+    <ThemeProvider theme={darkTheme}>
     <Box className="criteria-container">
       <Button 
-        sx={{ bgcolor: 'white' }} 
-        variant="outlined" 
+        //sx={{ bgcolor: 'white' }} 
+        variant="contained" 
         onClick={handleSubmit}
       >
         Valider
@@ -59,5 +89,6 @@ export default function InputValidateButtons({ protocol, onApiResult }) {
     </Grid2>
       )}
     </Box>
+    </ThemeProvider>
   );
 }

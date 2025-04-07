@@ -11,25 +11,18 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from "react-router-dom";
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 
 const pages = ['Protocoles', 'Articles'];
 
-export default function ResponsiveAppBar() {
+export default function ResponsiveAppBar({theme}) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
 
-  const darkTheme = createTheme({
-    palette: {
-      mode: 'dark',
-      primary: {
-        main: '#04060D',
-      },
-    },
-  });
+  
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -37,12 +30,13 @@ export default function ResponsiveAppBar() {
 
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={theme}>
     <AppBar position="static" color="primary">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <img src="/titre_crop.png" alt="Logo" style={{ width: '20%', height: '20%', marginRight: '1%' }} />
-
+          <Box component="a" href="/" sx={{ display: { xs: 'none', md: 'flex' }, flexGrow: 1 }}>
+            <img component="a" href="/" src="/titre_crop.png" alt="Logo" style={{ width: '20%', height: '20%', marginRight: '1%' }} />
+          </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"

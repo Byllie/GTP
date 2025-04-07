@@ -5,6 +5,8 @@ import InputTextField from '../inputs/InputTextField';
 import InputValidateButtons from '../inputs/InputValidateButtons';
 import CriteriaSquares from '../criteria/CriteriaSquares';
 
+
+
 export default function BasicGrid() {
   const [selectedProtocol, setSelectedProtocol] = useState(null);
   const [squareRows, setSquareRows] = useState([]); // Array to store multiple rows

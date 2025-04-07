@@ -2,6 +2,61 @@ import React, { useState } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
+import { createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@emotion/react';
+
+const darkTheme = createTheme({
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          backgroundColor : '#7BA1A6',
+          color: '#f4f6fb' // couleur texte par défaut
+        },
+      },
+    },
+    MuiFilledInput: {
+      styleOverrides: {
+        root: {
+          color: '#f4f6fb', // couleur texte par défaut
+          borderRadius: '16px',
+          backgroundColor: '#7BA1A6', 
+        },
+        '&:after': {
+            borderBottomLeftRadius: '12px',
+            borderBottomRightRadius: '12px',
+            borderBottom: '2px solid #b84b24', // couleur focus
+          },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: '#666',
+          '&.Mui-focused': {
+            color: '#000000',
+          },
+        },
+      },
+    },
+  palette: {
+    background: {
+      main: '#04060D',
+    },
+    primary: {
+      main: '#3F5B73',
+    },
+    text: {
+      main: '#f4f6fb',
+    },
+    secondary: {
+      main: '#7BA1A6',
+    },
+    accent: {
+      main: '#b84b24',
+    },
+  },
+}});
 
 export default function InputTextField({ onProtocolSelect }) {
   const [protocols, setProtocols] = useState([]);
@@ -27,6 +82,7 @@ export default function InputTextField({ onProtocolSelect }) {
   };
 
   return (
+    <ThemeProvider theme={darkTheme}>
     <Autocomplete
       disablePortal
       options={protocols}
@@ -35,14 +91,13 @@ export default function InputTextField({ onProtocolSelect }) {
       renderInput={(params) => (
         <TextField
           {...params}
-          sx={{ border: 1, bgcolor: 'white' }}
           id='input1'
           label="Entrée"
           variant="filled"
-          color="success"
           onFocus={fetchProtocols}
         />
       )}
     />
+    </ThemeProvider>
   );
 }
