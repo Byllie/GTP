@@ -33,8 +33,7 @@ export default function InputValidateButtons({ protocol, onApiResult }) {
     "Layer",
     "Date de création",
     "RFC",
-    "Cours",
-    "Wiki"
+    "Cours"
   ];
 
 
