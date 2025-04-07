@@ -113,12 +113,14 @@ app.get("/api/guessprotocol/*", (req, res) => {
     const list_req_prot = protocol["cours"];
     let count = 0;
     for (let x in list_req_prot) {
-      for(let y in POTD["cours"])
+      for(let y in POTD["cours"]){
         if (x === y) {
           count += 1;
         }
+      }
     }
-    if (count === list_req_prot.length) {
+    console.log(count);
+    if ((count === list_req_prot.length)&&(count === POTD["cours"].length)) {
       dic_comp["cours"] = "equal";
     }
     else if (count > 0) {
