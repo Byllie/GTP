@@ -1,12 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Protocoles from "./layouts/Protocoles";
 import Articles from "./layouts/Articles";
 import Home from "./layouts/home"
 import ResponsiveAppBar from "./components/appbar/ResponsiveAppBar";
-import NotFound from "./layouts/NotFound"
+import NotFound from "./layouts/NotFound";
+import Box from '@mui/material/Box';
 import { useLocation } from "react-router-dom";
+import { styled } from '@mui/material/styles';
+
+const BackgroundBox = styled(Box)({
+  backgroundImage: `url(/test.jpg)`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  height: '100vh',
+});
 
 
 function Layout() {
@@ -15,7 +23,7 @@ function Layout() {
   const hideNavbar = location.pathname === "/";
 
   return (
-    <>
+    <BackgroundBox>
       {!hideNavbar && <ResponsiveAppBar />} {/* Cache la navbar sur Home */}
       <Routes>
         <Route path="/" element={<Home />} />
@@ -23,7 +31,7 @@ function Layout() {
         <Route path="/articles" element={<Articles />} />
         <Route path="/*" element={<NotFound/>}/>
       </Routes>
-    </>
+    </BackgroundBox>
   );
 }
 
