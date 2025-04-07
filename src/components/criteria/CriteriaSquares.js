@@ -9,7 +9,7 @@ export default function CriteriaSquares({protocol, timestamp,response_data}) {
   console.log(response_data);
   const [visibleCount, setVisibleCount] = useState(0);
   const allCriteria = [response_data.reqName.name,response_data.reqName.layer,response_data.reqName.dateCreated,response_data.reqName.RFC,response_data.reqName.cours];
-  const matches = [response_data.dic_comp.layer,response_data.dic_comp.dateCreated,response_data.dic_comp.RFC,response_data.dic_comp.cours,response_data.dic_comp.name,response_data.dic_comp.wiki]
+  const matches = [response_data.dic_comp.name,response_data.dic_comp.layer,response_data.dic_comp.dateCreated,response_data.dic_comp.RFC,response_data.dic_comp.cours,response_data.dic_comp.wiki]
   const color =[];
   for(const match of matches){
     if (match==="different" || match==="lower" || match==="higher"){
