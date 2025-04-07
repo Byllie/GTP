@@ -32,6 +32,7 @@ export default function InputTextField({ onProtocolSelect }) {
       options={protocols}
       sx={{ width: 300 }}
       onChange={handleChange}
+      autoHighlight={true}
       renderInput={(params) => (
         <TextField
           {...params}
@@ -43,6 +44,9 @@ export default function InputTextField({ onProtocolSelect }) {
           onFocus={fetchProtocols}
         />
       )}
+      onKeyDown={e => {
+        e.key === 'Enter' && e.preventDefault()
+      }}
     />
   );
 }
