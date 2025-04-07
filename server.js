@@ -109,14 +109,15 @@ app.get("/api/guessprotocol/*", (req, res) => {
       console.log("2",protocol["RFC"]);
       console.log("3",POTD);
     }
+    console.log(POTD["name"]);
     const list_req_prot = protocol["cours"];
     let count = 0;
     for (let x in list_req_prot) {
-      if (list_req_prot[x] === POTD["name"]) {
-        count += 1;
-      }
+      for(let y in POTD["cours"])
+        if (x === y) {
+          count += 1;
+        }
     }
-
     if (count === list_req_prot.length) {
       dic_comp["cours"] = "equal";
     }
