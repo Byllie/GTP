@@ -11,6 +11,7 @@ export default function CriteriaSquares({protocol, timestamp,response_data}) {
   const allCriteria = [response_data.reqName.name,response_data.reqName.layer,response_data.reqName.dateCreated,response_data.reqName.RFC,response_data.reqName.cours];
   const matches = [response_data.dic_comp.name,response_data.dic_comp.layer,response_data.dic_comp.dateCreated,response_data.dic_comp.RFC,response_data.dic_comp.cours,response_data.dic_comp.wiki]
   const color =[];
+
   for(const match of matches){
     if (match==="different" || match==="lower" || match==="higher"){
       color.push("#FF5252");
@@ -39,6 +40,10 @@ export default function CriteriaSquares({protocol, timestamp,response_data}) {
   const cours = response_data.reqName.cours;
   const coursDisplay = Array.isArray(cours) ? cours.join(' ') : cours;
 
+  const handleNameClick = () => {
+      window.open(response_data.reqName.wiki, '_blank');
+  };
+
 
   return (
     <Box className="criteria-container">
@@ -53,7 +58,8 @@ export default function CriteriaSquares({protocol, timestamp,response_data}) {
           <Grid2 item key={index}>
             <Paper
               className={getItemClass(index)}
-              style={{ opacity: index < visibleCount ? 1 : 0 , "background-color": color[index] }}
+              style={{ opacity: index < visibleCount ? 1 : 0 , "background-color": color[index], cursor: index === 0 ? 'pointer' : 'default'}}
+              onClick={index === 0 ? handleNameClick : undefined}
             >
               {matches[index] === "higher" ? "⬆️ " : matches[index] === "lower" ? "⬇️ " : ""}
               {index === 4 ? coursDisplay : criteria}
