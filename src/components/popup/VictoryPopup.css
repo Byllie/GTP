@@ -1,0 +1,18 @@
+.victory-popup-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 40px;
+    position: relative;
+}
+
+.victory-popup-icon {
+    margin-right: 8px;
+    color: #1976d2;
+}
+
+.victory-popup-close {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+}
