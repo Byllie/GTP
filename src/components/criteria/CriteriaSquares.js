@@ -42,8 +42,9 @@ export default function CriteriaSquares({ protocol, timestamp, response_data, on
   // Animation
   useEffect(() => {
     const interval = setInterval(() => {
-      setVisibleCount(prev => (prev >= allCriteria.length ? prev : prev + 1));
-    }, 1000);
+      setVisibleCount(prev => prev >= allCriteria.length ? prev : prev + 1);
+    }, 500);
+
     return () => clearInterval(interval);
   }, [allCriteria.length]);
 

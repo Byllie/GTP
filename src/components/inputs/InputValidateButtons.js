@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import "./InputValidateButtons.css";
 import { Grid2 } from '@mui/material';
-import Paper from '@mui/material/Paper';
 
 export default function InputValidateButtons({ protocol, onApiResult }) {
   const [showCriteria, setShowCriteria] = useState(false);

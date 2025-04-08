@@ -7,6 +7,11 @@ export default function InputTextField({ onProtocolSelect }) {
   const [protocols, setProtocols] = useState([]);
   const hasFetched = useRef(false); // Réf pour suivre si le fetch a été fait
 
+  // Fetch protocols when component mounts
+  useEffect(() => {
+    fetchProtocols();
+  }, []);
+
   const fetchProtocols = () => {
     // Ne fetch que si pas déjà fait
     if (!hasFetched.current) {
