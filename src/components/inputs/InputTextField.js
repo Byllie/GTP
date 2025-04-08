@@ -18,9 +18,15 @@ const darkTheme = createTheme({
     MuiFilledInput: {
       styleOverrides: {
         root: {
-          color: '#f4f6fb', // couleur texte par défaut
+          color: '#f4f6fb',
           borderRadius: '16px',
           backgroundColor: '#7BA1A6', 
+          '&.Mui-focused': {
+            backgroundColor: '#7BA1A6'
+          },
+          "&:hover": {
+            backgroundColor: "#7BA1A6", 
+          },
         },
         // '&:after': {
         //     borderBottomLeftRadius: '12px',
@@ -29,16 +35,14 @@ const darkTheme = createTheme({
         //   },
       },
     },
-    // MuiInputLabel: {
-    //   styleOverrides: {
-    //     root: {
-    //       color: '#666',
-    //       // '&.Mui-focused': {
-    //       //   color: '#000000',
-    //       // },
-    //     },
-    //   },
-    // },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: '#f4f6fb'
+        },
+      },
+    },
+  },
   palette: {
     background: {
       main: '#04060D',
@@ -56,7 +60,7 @@ const darkTheme = createTheme({
       main: '#b84b24',
     },
   },
-}});
+});
 
 export default function InputTextField({ onProtocolSelect }) {
   const [protocols, setProtocols] = useState([]);
