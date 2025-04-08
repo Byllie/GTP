@@ -34,9 +34,6 @@ export default function ResponsiveAppBar({theme}) {
     <AppBar position="static" color="primary">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box component="a" href="/" sx={{ display: { xs: 'none', md: 'flex' }, flexGrow: 1 }}>
-            <img component="a" href="/" src="/titre_crop.png" alt="Logo" style={{ width: '20%', height: '20%', marginRight: '1%' }} />
-          </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -71,7 +68,7 @@ export default function ResponsiveAppBar({theme}) {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -89,7 +86,7 @@ export default function ResponsiveAppBar({theme}) {
             }}
           >
             GTP
-          </Typography>
+          </Typography> */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
                 <Button
@@ -101,6 +98,10 @@ export default function ResponsiveAppBar({theme}) {
                   {page}
                 </Button>
               ))}
+          </Box>
+          <Box sx={{ width:'100%', height:'auto' }} />
+          <Box component="a" href="/" sx={{ display: { xs: 'flex', md: 'flex' }, ml:2 }}>
+            <img src="/titre_crop.png" alt="Logo" style={{ width: '100%', height: 'auto', marginLeft: '1%' }} />
           </Box>
         </Toolbar>
       </Container>
