@@ -7,16 +7,22 @@ import "./InputValidateButtons.css";
 import { Grid2 } from '@mui/material';
 import Paper from '@mui/material/Paper';
 
-export default function InputValidateButtons({ protocol, onApiResult }) {
+export default function InputValidateButtons({ protocol, onApiResult,listProtocols }) {
   const [showCriteria, setShowCriteria] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === 'Enter') {
-        handleSubmit();
+        if (!protocol || protocol.trim() === '') {
+          alert("Veuillez sélectionner un protocole valide.");    
+          return;    
+        }
+        else{
+          handleSubmit();
+        }
+
       }
     };
-
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
@@ -34,6 +40,7 @@ export default function InputValidateButtons({ protocol, onApiResult }) {
           console.log(response.data);
           onApiResult(response.data);
           setShowCriteria(true); // Show the criteria after successful response
+          listProtocols(prev => prev.filter(p => p !== protocol));
       })
       .catch(error => {
         console.error("API Error:", error);
