@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -8,6 +8,19 @@ import { Grid2 } from '@mui/material';
 
 export default function InputValidateButtons({ protocol, onApiResult }) {
   const [showCriteria, setShowCriteria] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter') {
+        handleSubmit();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [protocol]);
 
   const handleSubmit = () => {
     if (!protocol || protocol.trim() === '') {
