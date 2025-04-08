@@ -6,9 +6,10 @@ require('dotenv').config()
 
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 let POTD = {};
 var protocolsCollection = null;
+const cors = require('cors');
 
 const DBusername = process.env.DB_USERNAME;
 const DBpassword = process.env.DB_PASSWORD;
@@ -31,19 +32,22 @@ const ProtocolsCollection = mongoose.model('protocols', protocolsCollectionSchem
 
 
 app.use(express.static(path.join(__dirname, "build")));
-
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
+
+app.get(/^\/(?!api(?:\/|$)).*$/, (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+})
 
 app.get("/api/protocols", (req, res) => {
   let listProtocols = ProtocolsCollection.find();
   listProtocols.then((listProtocols) => {
     res.json({listProtocols: listProtocols });
   });
-}
-);
+});
 
 app.get("/api/protocolsName", (req, res) => {
   let listNames = getProtocolsName();
@@ -168,9 +172,6 @@ app.listen(PORT, () => {
   console.log(`Serveur démarré sur http://localhost:${PORT}`);
 });
 
-app.post("*", (req, res) => {
-  res.json({ message: "Pas encore de DB" });
-});
 
 async function startDB() {
   try {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
@@ -6,15 +6,19 @@ import axios from 'axios';
 export default function InputTextField({ onProtocolSelect }) {
   const [protocols, setProtocols] = useState([]);
 
+  // Fetch protocols when component mounts
+  useEffect(() => {
+    fetchProtocols();
+  }, []);
+
   const fetchProtocols = () => {
     axios.get('/api/protocolsName')
       .then(response => {
         setProtocols(response.data.listNames);
-        console.log(response.data.listNames)
+        console.log('Protocols loaded:', response.data.listNames)
       })
       .catch(error => {
-        console.log(error);
-        setProtocols(["Bonjour", "Banane", "haha"]);
+        console.log('Error fetching data',error);
       });
   };
 

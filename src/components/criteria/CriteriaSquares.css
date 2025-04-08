@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 16px;
+  margin-top: 8px;
   margin-bottom: 32px;
   }
   
@@ -28,17 +28,3 @@
   }
   
   
-  .criteria-item.even {
-  background-color: #4CAF50;
-  color: white;
-  }
-  
-  .criteria-item.odd {
-  background-color: #FFC107;
-  color: rgba(0, 0, 0, 0.87);
-  }
-  
-  .criteria-item.error {
-  background-color: #FF5252;
-  color: white;
-  }
