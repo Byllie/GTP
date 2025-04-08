@@ -50,7 +50,7 @@ export default function CriteriaSquares({protocol, timestamp,response_data}) {
           <Grid2 item key={index}>
             <Paper
               className={getItemClass(index)}
-              style={{ opacity: index < visibleCount ? 1 : 0 , "background-color": color[index] }}
+              style={{ opacity: index < visibleCount ? 1 : 0 , "background-color": color[index], "color":"#f4f6fb"}}
             >
               {matches[index] === "higher" ? "⬆️ " : matches[index] === "lower" ? "⬇️ " : ""}
               {criteria}

@@ -6,7 +6,8 @@ import "./home.css";
 import { ThemeProvider,createTheme } from '@mui/material/styles';
 
 const BackgroundBox = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.background.main,
+  // backgroundColor: theme.palette.background.main,
+  backgroundImage :`url(/ChatGPT_fond_noir.png)`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   minHeight: '100vh',

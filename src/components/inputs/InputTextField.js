@@ -7,14 +7,14 @@ import { ThemeProvider } from '@emotion/react';
 
 const darkTheme = createTheme({
   components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          backgroundColor : '#7BA1A6',
-          color: '#f4f6fb' // couleur texte par défaut
-        },
-      },
-    },
+    // MuiButton: {
+    //   styleOverrides: {
+    //     root: {
+    //       backgroundColor : '#ffffff',
+    //       color: '#f4f6fb' // couleur texte par défaut
+    //     },
+    //   },
+    // },
     MuiFilledInput: {
       styleOverrides: {
         root: {
@@ -22,23 +22,23 @@ const darkTheme = createTheme({
           borderRadius: '16px',
           backgroundColor: '#7BA1A6', 
         },
-        '&:after': {
-            borderBottomLeftRadius: '12px',
-            borderBottomRightRadius: '12px',
-            borderBottom: '2px solid #b84b24', // couleur focus
-          },
+        // '&:after': {
+        //     borderBottomLeftRadius: '12px',
+        //     borderBottomRightRadius: '12px',
+        //     borderBottom: '2px solid #b84b24', // couleur focus
+        //   },
       },
     },
-    MuiInputLabel: {
-      styleOverrides: {
-        root: {
-          color: '#666',
-          '&.Mui-focused': {
-            color: '#000000',
-          },
-        },
-      },
-    },
+    // MuiInputLabel: {
+    //   styleOverrides: {
+    //     root: {
+    //       color: '#666',
+    //       // '&.Mui-focused': {
+    //       //   color: '#000000',
+    //       // },
+    //     },
+    //   },
+    // },
   palette: {
     background: {
       main: '#04060D',

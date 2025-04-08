@@ -14,7 +14,7 @@ const darkTheme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          backgroundColor : '#7BA1A6',
+          backgroundColor : '#0266a7',
           color: '#f4f6fb' // couleur texte par défaut
         },
       },
@@ -78,11 +78,11 @@ export default function InputValidateButtons({ protocol, onApiResult }) {
       </Button>
 
       {showCriteria && (
-      <Grid2 container spacing={2} className="criteria-grid" alignItems="center">
+      <Grid2 container spacing={2} className="criteria-name-grid" alignItems="center">
         {criteriaLabels.map((label, index) => (
           <Grid2 item key={index} xs={4}>
             <div className="criteria-item">
-              <Typography>{label}</Typography>
+              <Typography color="#f4f6fb">{label}</Typography>
             </div>
           </Grid2>
         ))}

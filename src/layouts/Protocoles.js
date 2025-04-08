@@ -5,7 +5,8 @@ import BasicGrid from "../components/grid/BasicGrid";
 import { createTheme } from '@mui/material/styles';
 
 const BackgroundBox = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.background.main,
+  // backgroundColor: theme.palette.background.main,
+  backgroundImage :`url(/ChatGPT_fond_noir.png)`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   minHeight: '100vh',
@@ -19,13 +20,13 @@ const darkTheme = createTheme({
       main: '#04060D',
     },
     primary: {
-      main: '#3F5B73',
+      main: '#002771', //0041bd
     },
     text: {
       main: '#f4f6fb',
     },
     secondary: {
-      main: '#7BA1A6',
+      main: '#0266a7', //014674
     },
   },
 });
