@@ -42,6 +42,7 @@ export default function InputTextField({ onProtocolSelect,protocols }) {
       onInputChange={(event, newInputValue) => {
         setInputValue(newInputValue); // Met à jour la valeur du champ
       }}
+      autoHighlight={true}
       renderInput={(params) => (
         <TextField
           {...params}
@@ -54,6 +55,9 @@ export default function InputTextField({ onProtocolSelect,protocols }) {
           onKeyDown={handleKeyDown} // Ajout du gestionnaire d'événements
         />
       )}
+      onKeyDown={e => {
+        e.key === 'Enter' && e.preventDefault()
+      }}
     />
   );
 }
