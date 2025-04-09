@@ -17,9 +17,8 @@ export default function InputTextField({ onProfessorSelect, loading, professors,
                 textAlign: 'center',
                 maxWidth: '600px',
                 marginLeft: 'auto',
-                marginRight:'auto'
+                marginRight:'auto',
                 width: '100%',
-                maxWidth: 600,
             }}
         >
             <Typography variant="h5" gutterBottom>
