@@ -6,6 +6,28 @@ import Home from "./layouts/home";
 import ResponsiveAppBar from "./components/appbar/ResponsiveAppBar";
 import NotFound from "./layouts/NotFound";
 import { AnimatePresence, motion } from "framer-motion";
+import Box from '@mui/material/Box';
+import { styled } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const BackgroundBox = styled(Box)(({ theme }) => ({
+  backgroundColor: 'background', // ou une autre couleur du thème
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  height: '100vh',
+}));
+
+const darkTheme = createTheme({
+  palette: {
+    background: {
+      main: '#04060D',
+    },
+    primary: {
+      main: '#00123a',
+    },
+  },
+});
+
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -14,6 +36,7 @@ function AnimatedRoutes() {
   return (
     <>
       {/* Navbar animée, visible sauf sur la page d'accueil */}
+    <ThemeProvider theme={darkTheme}>
       <AnimatePresence>
         {!hideNavbar && (
           <motion.div
@@ -30,7 +53,7 @@ function AnimatedRoutes() {
               background: 'transparent', // Assure que la navbar n'a pas de fond blanc
             }}
           >
-            <ResponsiveAppBar />
+            <ResponsiveAppBar theme={darkTheme}/>
           </motion.div>
         )}
       </AnimatePresence>
@@ -52,6 +75,7 @@ function AnimatedRoutes() {
           </Routes>
         </motion.div>
       </AnimatePresence>
+    </ThemeProvider>
     </>
   );
 }
