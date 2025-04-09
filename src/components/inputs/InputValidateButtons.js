@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import "./InputValidateButtons.css";
 import { Grid2 } from '@mui/material';
-import Paper from '@mui/material/Paper';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@emotion/react';
 

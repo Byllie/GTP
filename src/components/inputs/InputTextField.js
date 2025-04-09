@@ -7,14 +7,6 @@ import { ThemeProvider } from '@emotion/react';
 
 const darkTheme = createTheme({
   components: {
-    // MuiButton: {
-    //   styleOverrides: {
-    //     root: {
-    //       backgroundColor : '#ffffff',
-    //       color: '#f4f6fb' // couleur texte par défaut
-    //     },
-    //   },
-    // },
     MuiFilledInput: {
       styleOverrides: {
         root: {
@@ -27,12 +19,7 @@ const darkTheme = createTheme({
           "&:hover": {
             backgroundColor: "#7BA1A6", 
           },
-        },
-        // '&:after': {
-        //     borderBottomLeftRadius: '12px',
-        //     borderBottomRightRadius: '12px',
-        //     borderBottom: '2px solid #b84b24', // couleur focus
-        //   },
+        }
       },
     },
     MuiInputLabel: {
