@@ -1,10 +1,10 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import BasicGrid from "../components/grid/BasicGrid";
+
 
 const BackgroundBox = styled(Box)({
-  backgroundImage: `url(/test.jpg)`,
+  backgroundImage: `url(/cat.jpg)`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   minHeight: '100vh',
@@ -15,7 +15,6 @@ const BackgroundBox = styled(Box)({
 export default function MainLayout() {
   return (
     <BackgroundBox>
-      <BasicGrid/>
     </BackgroundBox>
   );
 }

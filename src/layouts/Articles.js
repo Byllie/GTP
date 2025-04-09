@@ -1,26 +1,20 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import GridArticles from "../components/grid2/GridArticles";
-import { motion } from 'framer-motion';
 
-// Style du Box pour l'image de fond
+
 const BackgroundBox = styled(Box)({
   backgroundImage: `url(/test.jpg)`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   minHeight: '100vh',
   overflow: 'auto',
-  backgroundAttachment: 'fixed', // Assure que l'image de fond reste fixe
+  backgroundAttachment: 'fixed', // Ensures the background doesn't zoom out on updates
 });
 
-// Composant principal avec transition
 export default function MainLayout() {
   return (
     <BackgroundBox>
-      <GridArticles/>
     </BackgroundBox>
-    // Transition d'opacité sur le BackgroundBox
-
   );
 }
