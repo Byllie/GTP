@@ -1,23 +1,30 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+import axios from 'axios';
 
-export default function InputTextField({ onProtocolSelect,protocols }) {
-  const [inputValue, setInputValue] = useState(''); // État pour la valeur du champ de texte
-  const hasFetched = useRef(false); // Réf pour suivre si le fetch a été fait
-  const [selectedValue, setSelectedValue] = useState(null); // Valeur sélectionnée
+export default function InputTextField({ onProtocolSelect }) {
+  const [protocols, setProtocols] = useState([]);
 
+  const fetchProtocols = () => {
+    axios.get('/api/protocolsName')
+      .then(response => {
+        setProtocols(response.data.listNames);
+        console.log(response.data.listNames)
+      })
+      .catch(error => {
+        console.log(error);
+        setProtocols(["Bonjour", "Banane", "haha"]);
+      });
+  };
 
   const handleChange = (event, newValue) => {
-    if (newValue) {
+    // Only call onProtocolSelect if there's a value
+    if (newValue !== null) {
       onProtocolSelect(newValue);
-      // Option: retirer le protocole sélectionné
     }
+    // Empty input won't trigger any state change
   };
-    
-
-
-    
 
   return (
     <Autocomplete
@@ -25,25 +32,17 @@ export default function InputTextField({ onProtocolSelect,protocols }) {
       options={protocols}
       sx={{ width: 300 }}
       onChange={handleChange}
-      autoHighlight={true}
-      inputValue={inputValue} 
-      onInputChange={(event, newInputValue) => {
-        setInputValue(newInputValue); // Met à jour la valeur du champ
-      }}
       renderInput={(params) => (
         <TextField
           {...params}
           sx={{ border: 1, bgcolor: 'white' }}
+          id='input1'
           label="Entrée"
           variant="filled"
           color="success"
-          // OnFocus conservé mais ne déclenchera pas de nouveau fetch
-          onFocus={() => console.log("Focus - Liste déjà chargée")}
+          onFocus={fetchProtocols}
         />
       )}
-      onKeyDown={e => {
-        e.key === 'Enter' && e.preventDefault()
-      }}
     />
   );
 }
