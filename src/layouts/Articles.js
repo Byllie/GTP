@@ -6,19 +6,6 @@ import { motion } from 'framer-motion';
 import { createTheme } from '@mui/material/styles';
 
 
-const BackgroundBox = styled(Box)(({ theme }) => ({
-  // backgroundColor: theme.palette.background.main,
-  backgroundImage :`url(/ChatGPT_fond_noir.png)`,
-                                                  backgroundSize: 'cover',
-                                                  backgroundPosition: 'center',
-                                                  minHeight: '100vh',
-                                                  overflow: 'auto',
-                                                  backgroundAttachment: 'fixed',
-                                                  paddingTop: '64px',
-
-
-
-}));
 
 const darkTheme = createTheme({
   palette: {
@@ -36,6 +23,17 @@ const darkTheme = createTheme({
     },
   },
 });
+// Style du Box pour l'image de fond
+const BackgroundBox = styled(Box)(({ theme }) => ({
+  // backgroundColor: theme.palette.background.main,
+  backgroundImage :`url(/ChatGPT_fond_noir.png)`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  minHeight: '100vh',
+  overflow: 'auto',
+  backgroundAttachment: 'fixed', 
+  paddingTop: '64px', 
+}));
 
 // Composant principal avec transition
 export default function MainLayout() {
