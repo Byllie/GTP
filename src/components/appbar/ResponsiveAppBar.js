@@ -9,19 +9,19 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from "react-router-dom";
-
+import { ThemeProvider } from '@mui/material/styles';
 
 const pages = ['Protocoles', 'Articles'];
 
-export default function ResponsiveAppBar() {
+export default function ResponsiveAppBar({theme}) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
 
+  
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -29,28 +29,10 @@ export default function ResponsiveAppBar() {
 
 
   return (
-    <AppBar position="static">
+    <ThemeProvider theme={theme}>
+    <AppBar position="static" color="primary">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component={Link} // Remplace <a> par Link
-            to="/" // Redirige vers la page d'accueil
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            GuessTheProtocol
-          </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -85,7 +67,7 @@ export default function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -103,7 +85,7 @@ export default function ResponsiveAppBar() {
             }}
           >
             GTP
-          </Typography>
+          </Typography> */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
                 <Button
@@ -116,8 +98,13 @@ export default function ResponsiveAppBar() {
                 </Button>
               ))}
           </Box>
+          <Box sx={{ width:'100%', height:'auto' }} />
+          <Box component="a" href="/" sx={{ display: { xs: 'flex', md: 'flex' }, ml:2 }}>
+            <img src="/titre_crop.png" alt="Logo" style={{ width: '100%', height: 'auto', marginLeft: '1%' }} />
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>
+    </ThemeProvider>
   );
 }

@@ -12,13 +12,6 @@
         "dateCreated" : 1974,
         "RFC" : 9293,
         "wiki" : "https://en.wikipedia.org/wiki/Transmission_Control_Protocol",
-        "cours": "IP"
-        },
-        { "name" : "IP",
-        "layer" : 3,
-        "dateCreated" : 1981,
-        "RFC" : 791,
-        "wiki" : "https://en.wikipedia.org/wiki/Internet_Protocol",
         "cours": ["IP"]
         },
         { "name" : "IPv4",
@@ -35,7 +28,7 @@
         "wiki" : "https://en.wikipedia.org/wiki/IPv6",
         "cours": ["IP"]
         },
-        { "name" : "HTTP/1.0",
+        { "name" : "HTTP",
         "layer" : 7,
         "dateCreated" : 1991,
         "RFC" : 1945,
@@ -49,47 +42,19 @@
         "wiki" : "https://en.wikipedia.org/wiki/HTTPS",
         "cours": [ "ELP" , "WEB"]
         },
-        { "name" : "FTP",
-        "layer" : 7,
-        "dateCreated" : 1971,
-        "RFC" : 959,
-        "wiki" : "https://en.wikipedia.org/wiki/File_Transfer_Protocol",
-        "cours": []
-        },
         { "name" : "SSH",
         "layer" : 7,
         "dateCreated" : 1995,
         "RFC" : 4253,
         "wiki" : "https://en.wikipedia.org/wiki/Secure_Shell",
-        "cours": []
-        },
-        { "name" : "SMTP",
-        "layer" : 7,
-        "dateCreated" : 1982,
-        "RFC" : 5321,
-        "wiki" : "https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol",
-        "cours": []
-        },
-        { "name" : "POP3",
-        "layer" : 7,
-        "dateCreated" : 1988,
-        "RFC" : 1081,
-        "wiki" : "https://en.wikipedia.org/wiki/Post_Office_Protocol",
-        "cours": []
-        },
-        { "name" : "IMAP",
-        "layer" : 7,
-        "dateCreated" : 1994,
-        "RFC" : 1730,
-        "wiki" : "https://en.wikipedia.org/wiki/Internet_Message_Access_Protocol",
-        "cours": []
+        "cours": ["CRO"]
         },
         { "name" : "DNS",
         "layer" : 7,
         "dateCreated" : 1983,
         "RFC" : 882,
         "wiki" : "https://en.wikipedia.org/wiki/Domain_Name_System",
-        "cours": []
+        "cours": ["MET"]
         },
         { "name" : "DHCP",
         "layer" : 7,
@@ -104,21 +69,7 @@
         "dateCreated" : 1981,
         "RFC" : 792,
         "wiki" : "https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol",
-        "cours": ["IP","MET"]
-        },
-        { "name" : "ARP",
-        "layer" : 2,
-        "dateCreated" : 1982,
-        "RFC" : 826,
-        "wiki" : "https://en.wikipedia.org/wiki/Address_Resolution_Protocol",
-        "cours" : ["MAC"]
-        },
-        { "name" : "Ethernet",
-        "layer" : 2,
-        "dateCreated" : 1980,
-        "RFC" : -1,
-        "wiki" : "https://en.wikipedia.org/wiki/Ethernet",
-        "cours" : ["MAC"]
+        "cours": ["IP","MET","NAS"]
         },
         {
         "name": "MPLS",
@@ -126,55 +77,94 @@
         "dateCreated": 2001,
         "RFC": "RFC 3031, RFC 3032",
         "wiki": "https://en.wikipedia.org/wiki/Multiprotocol_Label_Switching",
-        "cours": "NAS"
+        "cours": ["NAS"]
         },
         {
         "name": "LDP",
         "layer": 2.5,
         "dateCreated": 2007,
-        "RFC": "RFC 5036",
+        "RFC": 5036,
         "wiki": "https://en.wikipedia.org/wiki/Label_Distribution_Protocol",
-        "cours": "NAS"
+        "cours": ["NAS"]
         },
         {
         "name": "RSVP",
         "layer": 3,
         "dateCreated": 1997,
-        "RFC": "RFC 2205, RFC 3209 (RSVP-TE)",
+        "RFC": 2205,
         "wiki": "https://en.wikipedia.org/wiki/Resource_Reservation_Protocol",
-        "cours": "NAS"
+        "cours": ["NAS"]
         },
         {
         "name": "BGP/MPLS VPN",
         "layer": 3,
         "dateCreated": 2006,
-        "RFC": "RFC 4364, RFC 4381",
+        "RFC": 4364,
         "wiki": "https://en.wikipedia.org/wiki/BGP_MPLS_VPN",
-        "cours": "NAS"
+        "cours": ["NAS"]
         },
         {
         "name": "Segment Routing (SR)",
         "layer": 3,
         "dateCreated": 2018,
-        "RFC": "RFC 8402, RFC 8660 (SR-MPLS), RFC 8986 (SRv6)",
+        "RFC": 8402,
         "wiki": "https://en.wikipedia.org/wiki/Segment_routing",
-        "cours": "NAS"
+        "cours": ["NAS"]
         },
         {
         "name": "OSPF",
         "layer": 3,
         "dateCreated": 1998,
-        "RFC": "RFC 2328 (v2), RFC 8665 (OSPF extensions for SR)",
+        "RFC": 2328,
         "wiki": "https://en.wikipedia.org/wiki/Open_Shortest_Path_First",
-        "cours": "NAS"
+        "cours": ["NAS","NRP"]
         },
         {
         "name": "BGP",
         "layer": 4,
         "dateCreated": 1994,
-        "RFC": "RFC 4271",
+        "RFC": 4271,
         "wiki": "https://en.wikipedia.org/wiki/Border_Gateway_Protocol",
-        "cours": "NAS"
+        "cours": ["NAS","NRP"]
+        },
+        {
+        "name": "Telnet",
+        "layer": 7,
+        "dateCreated": 1969,
+        "RFC": 854,
+        "wiki": "https://en.wikipedia.org/wiki/Telnet",
+        "cours": ["GNS","NRP"]
+        },
+        {
+        "name": "RIP",
+        "layer": 3,
+        "dateCreated": 1982,
+        "RFC": 1058,
+        "wiki": "https://en.wikipedia.org/wiki/Routing_Information_Protocol",
+        "cours": ["NAS","NRP"]
+        },
+                {
+        "name": "WHOIS",
+        "layer": 7,
+        "dateCreated": 1970,
+        "RFC": 3912,
+        "wiki": "https://en.wikipedia.org/wiki/WHOIS",
+        "cours": ["MET"]
+        },
+        {
+        "name": "IS-IS",
+        "layer": 3,
+        "dateCreated": 1990,
+        "RFC": 1195,
+        "wiki": "https://en.wikipedia.org/wiki/IS-IS",
+        "cours": ["NAS"]
+        },        {
+        "name": "NAT",
+        "layer": 3,
+        "dateCreated": 1999,
+        "RFC": 1631,
+        "wiki": "https://en.wikipedia.org/wiki/Network_address_translation",
+        "cours": ["IP"]
         }
         
 ]

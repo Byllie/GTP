@@ -1,13 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import "./InputValidateButtons.css";
 import { Grid2 } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@emotion/react';
 
-export default function InputValidateButtons({ protocol, onApiResult }) {
+const darkTheme = createTheme({
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          backgroundColor : '#0266a7',
+          color: '#f4f6fb' // couleur texte par défaut
+        },
+      },
+    },
+  },
+  palette: {
+    background: {
+      main: '#04060D',
+    },
+    primary: {
+      main: '#3F5B73',
+    },
+    text: {
+      main: '#f4f6fb',
+    },
+    secondary: {
+      main: '#7BA1A6',
+    },
+  },
+});
+
+export default function InputValidateButtons({ protocol, onApiResult,listProtocols }) {
   const [showCriteria, setShowCriteria] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter') {
+        if (!protocol || protocol.trim() === '') {
+          return;    
+        }
+        else{
+          handleSubmit();
+        }
+
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [protocol]);
 
   const handleSubmit = () => {
     if (!protocol || protocol.trim() === '') {
@@ -20,6 +67,7 @@ export default function InputValidateButtons({ protocol, onApiResult }) {
           console.log(response.data);
           onApiResult(response.data);
           setShowCriteria(true); // Show the criteria after successful response
+          listProtocols(prev => prev.filter(p => p !== protocol));
       })
       .catch(error => {
         console.error("API Error:", error);
@@ -37,26 +85,28 @@ export default function InputValidateButtons({ protocol, onApiResult }) {
 
 
   return (
+    <ThemeProvider theme={darkTheme}>
     <Box className="criteria-container">
       <Button 
-        sx={{ bgcolor: 'white' }} 
-        variant="outlined" 
+        //sx={{ bgcolor: 'white' }} 
+        variant="contained" 
         onClick={handleSubmit}
       >
         Valider
       </Button>
 
       {showCriteria && (
-      <Grid2 container spacing={2} className="criteria-grid" alignItems="center">
+      <Grid2 container spacing={2} className="criteria-name-grid" alignItems="center">
         {criteriaLabels.map((label, index) => (
           <Grid2 item key={index} xs={4}>
             <div className="criteria-item">
-              <Typography>{label}</Typography>
+              <Typography color="#f4f6fb">{label}</Typography>
             </div>
           </Grid2>
         ))}
     </Grid2>
       )}
     </Box>
+    </ThemeProvider>
   );
 }

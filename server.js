@@ -18,8 +18,6 @@ const DBpassword = process.env.DB_PASSWORD;
 
 
 app.use(express.static(path.join(__dirname, "build")));
-
-
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
@@ -138,7 +136,7 @@ app.get("/api/guessprotocol/*", (req, res) => {
     let count = 0;
     for (let x in list_req_prot) {
       for(let y in POTD["cours"]){
-        if (x === y) {
+        if (list_req_prot[x] === POTD["cours"][y]) {
           count += 1;
         }
       }
@@ -188,6 +186,7 @@ app.listen(PORT, () => {
       if (listArticles){
         AOTD = listArticles[Math.floor(Math.random() * listArticles.length)];
       }
+
       console.log(AOTD.name)
     });
   }
@@ -330,5 +329,4 @@ async function getProtocolByName(protocolName) {
   } catch (err) {
     console.error('Erreur lors de la récupération du protocole:', err);
   }
-
 }
