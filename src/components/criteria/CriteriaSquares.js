@@ -5,6 +5,9 @@ import Typography from '@mui/material/Typography';
 import { Grid2 } from '@mui/material';
 import './CriteriaSquares.css';
 import VictoryPopup from './../popup/VictoryPopup';
+import Confetti from 'react-confetti';
+
+
 
 export default function CriteriaSquares({ protocol, timestamp, response_data, onPopupClose, attempts }) {
   const [visibleCount, setVisibleCount] = useState(0);
@@ -67,11 +70,10 @@ export default function CriteriaSquares({ protocol, timestamp, response_data, on
   const handleNameClick = () => {
     window.open(response_data.reqName.wiki, '_blank');
   };
-
-  return (
+    return (
     <Box className="criteria-container">
     {showVictoryTitle && (
-      "🎉🎉🎉🎉🎉🎉🎉🎉"
+      <Confetti className="confetti"/>
     )}
 
     <Typography variant="subtitle1" gutterBottom className="criteria-title" />
