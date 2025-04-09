@@ -42,11 +42,13 @@ export default function InputTextField({ onProfessorSelect, showClue, remainingT
                 backgroundColor: 'white',
                 borderRadius: '12px',
                 padding: '2rem',
+                marginTop: '10px',
                 boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
                 textAlign: 'center',
                 width: '80%',
                 maxWidth: '600px',
-                margin: 'auto',
+                marginLeft: 'auto',
+                marginRight:'auto'
             }}
         >
             <Typography variant="h5" gutterBottom>
