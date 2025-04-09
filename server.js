@@ -5,7 +5,6 @@ require('dotenv').config()
 
 
 const app = express();
-
 const PORT = process.env.PORT || 3000;
 let POTD = null;// protocol of the day
 let AOTD = null;// article of the day
@@ -19,7 +18,6 @@ const DBpassword = process.env.DB_PASSWORD;
 
 
 app.use(express.static(path.join(__dirname, "build")));
-
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
@@ -188,6 +186,7 @@ app.listen(PORT, () => {
       if (listArticles){
         AOTD = listArticles[Math.floor(Math.random() * listArticles.length)];
       }
+
       console.log(AOTD.name)
     });
   }
@@ -330,8 +329,4 @@ async function getProtocolByName(protocolName) {
   } catch (err) {
     console.error('Erreur lors de la récupération du protocole:', err);
   }
-
 }
-
-
-
