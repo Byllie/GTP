@@ -89,6 +89,12 @@ export default function InputValidateButtons({ protocol, onApiResult,listProtoco
     <Box className="criteria-container">
       <Button 
         //sx={{ bgcolor: 'white' }} 
+        sx={{
+          width: "30vmin",
+          height: '6vmin',
+          fontSize: '2.5vmin',
+          marginBottom: '2vmin'
+        }}
         variant="contained" 
         onClick={handleSubmit}
       >
@@ -98,9 +104,9 @@ export default function InputValidateButtons({ protocol, onApiResult,listProtoco
       {showCriteria && (
       <Grid2 container spacing={2} className="criteria-name-grid" alignItems="center">
         {criteriaLabels.map((label, index) => (
-          <Grid2 item key={index} xs={4}>
+          <Grid2 item key={index} xs={4} sx={{ width:"13vmin", height:"13vmin", marginRight:"2vmin"}}>
             <div className="criteria-item">
-              <Typography color="#f4f6fb">{label}</Typography>
+              <Typography color="#f4f6fb" fontSize="3vmin">{label}</Typography>
             </div>
           </Grid2>
         ))}

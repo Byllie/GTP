@@ -66,14 +66,14 @@ const handleApiResult = (response_data) => {
 
     {showInputs && (
       <>
-      <Grid item sx={{ paddingTop:'5vmin' }}xs={12} display="flex" justifyContent="center">
+      <Grid item sx={{ marginTop:'5vmin', height:'3vmin' }} xs={12} display="flex" justifyContent="center">
       <InputTextField 
           onProtocolSelect={handleProtocolSelect} 
           listProtocols={setProtocols}
           protocols={protocols}  />
       </Grid>
 
-      <Grid item xs={12} display="flex" justifyContent="center">
+      <Grid item xs={12} sx={{ marginTop:'20vmin' }} display="flex" justifyContent="center">
       <InputValidateButtons
       protocol={selectedProtocol} 
       onApiResult={handleApiResult}

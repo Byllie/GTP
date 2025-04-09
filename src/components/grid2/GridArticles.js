@@ -132,7 +132,7 @@ export default function GridArticles() {
                                   marginTop: '1.5rem',
             }}
             >
-            <Typography variant="body1" sx={{ mt: 2, color: "text.primary", textAlign: "center" }}>
+            <Typography variant="body1" sx={{ mt: 2, color: "text.primary", textAlign: "center", fontSize:"3vmin" }}>
             {abstract || "Aucun résumé disponible."}
             </Typography>
             </Box>
