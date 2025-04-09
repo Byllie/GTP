@@ -138,7 +138,7 @@ app.get("/api/guessprotocol/*", (req, res) => {
     let count = 0;
     for (let x in list_req_prot) {
       for(let y in POTD["cours"]){
-        if (x === y) {
+        if (list_req_prot[x] === POTD["cours"][y]) {
           count += 1;
         }
       }

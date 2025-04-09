@@ -12,8 +12,11 @@ const BackgroundBox = styled(Box)(({ theme }) => ({
   backgroundPosition: 'center',
   minHeight: '100vh',
   overflow: 'auto',
-  backgroundAttachment: 'fixed', // Assure que l'image de fond reste fixe
-  marginTop: '64px', // Ajoute une marge pour décaler le contenu sous la navbar
+  backgroundAttachment: 'fixed', 
+  paddingTop: '64px', 
+
+
+
 }));
 
 const darkTheme = createTheme({
