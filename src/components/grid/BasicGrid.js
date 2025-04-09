@@ -6,7 +6,7 @@ import InputTextField from '../inputs/InputTextField';
 import InputValidateButtons from '../inputs/InputValidateButtons';
 import CriteriaSquares from '../criteria/CriteriaSquares';
 import axios from 'axios';
-
+import './BasicGrid.css';
 
 
 export default function BasicGrid() {
@@ -66,7 +66,7 @@ const handleApiResult = (response_data) => {
 
     {showInputs && (
       <>
-      <Grid item xs={12} display="flex" justifyContent="center">
+      <Grid item sx={{ paddingTop:'5vmin' }}xs={12} display="flex" justifyContent="center">
       <InputTextField 
           onProtocolSelect={handleProtocolSelect} 
           listProtocols={setProtocols}
