@@ -1,12 +1,61 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
+import { createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@emotion/react';
+
+const darkTheme = createTheme({
+    components: {
+        MuiFilledInput: {
+            styleOverrides: {
+                root: {
+                    color: '#f4f6fb',
+                    borderRadius: '16px',
+                    backgroundColor: '#7BA1A6',
+                    '&.Mui-focused': {
+                        backgroundColor: '#7BA1A6'
+                    },
+                    "&:hover": {
+                        backgroundColor: "#7BA1A6",
+                    },
+                }
+            },
+        },
+        MuiInputLabel: {
+            styleOverrides: {
+                root: {
+                    color: '#f4f6fb'
+                },
+            },
+        },
+    },
+    palette: {
+        background: {
+            main: '#04060D',
+        },
+        primary: {
+            main: '#3F5B73',
+        },
+        text: {
+            main: '#f4f6fb',
+        },
+        secondary: {
+            main: '#7BA1A6',
+        },
+        accent: {
+            main: '#b84b24',
+        },
+    },
+});
 
 export default function InputTextField({ onProfessorSelect, loading, professors, articleTitle, remainingTries, showClue }) {
+    const [inputValue, setInputValue] = useState('');
+
     return (
+        <ThemeProvider theme={darkTheme}>
         <Box
             sx={{
                 backgroundColor: 'white',
@@ -21,39 +70,46 @@ export default function InputTextField({ onProfessorSelect, loading, professors,
                 width: '100%',
             }}
         >
-            <Typography variant="h5" gutterBottom>
-                Which professor is the author?
+        <Typography variant="h5" gutterBottom>
+        Quel professeur est l’auteur ?
+        </Typography>
+
+        {loading ? (
+            <CircularProgress sx={{ my: 2 }} />
+        ) : (
+            <>
+            <Typography variant="h6" sx={{ mb: 3, fontStyle: 'italic' }}>
+            « {articleTitle} »
             </Typography>
 
-            {loading ? (
-                <CircularProgress sx={{ my: 2 }} />
-            ) : (
-                <>
-                    <Typography variant="h6" sx={{ mb: 3, fontStyle: 'italic' }}>
-                        "{articleTitle}"
-                    </Typography>
-
-                    <Autocomplete
-                        options={professors}
-                        sx={{ width: 300, margin: '0 auto' }}
-                        onChange={(_, newValue) => onProfessorSelect(newValue)}
-                        renderInput={(params) => (
-                            <TextField
-                                {...params}
-                                label="Select professor"
-                                variant="outlined"
-                                fullWidth
-                            />
-                        )}
-                    />
-                    {/* Show clue if remainingTries > 0 and showClue is true */}
-                    {remainingTries > 0 && showClue && (
-                        <Typography variant="body2" sx={{ mt: 2, color: "error.main" }}>
-                            {`Abstract Clue in (${remainingTries} ${remainingTries === 1 ? 'try' : 'tries'})`}
-                        </Typography>
-                    )}
-                </>
+            <Autocomplete
+            disablePortal
+            options={professors}
+            sx={{ width: 300, margin: '0 auto' }}
+            onChange={(_, newValue) => onProfessorSelect(newValue)}
+            inputValue={inputValue}
+            onInputChange={(event, newInputValue) => setInputValue(newInputValue)}
+            renderInput={(params) => (
+                <TextField
+                {...params}
+                label="Choisir un professeur"
+                variant="filled"
+                fullWidth
+                />
             )}
+            onKeyDown={e => {
+                if (e.key === 'Enter') e.preventDefault();
+            }}
+            />
+
+            {remainingTries > 0 && showClue && (
+                <Typography variant="body2" sx={{ mt: 2, color: "error.main" }}>
+                Indice sur le résumé dans ({remainingTries} {remainingTries === 1 ? 'tentative' : 'tentatives'})
+                </Typography>
+            )}
+            </>
+        )}
         </Box>
+        </ThemeProvider>
     );
 }
