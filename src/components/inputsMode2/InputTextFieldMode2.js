@@ -70,7 +70,7 @@ export default function InputTextField({ onProfessorSelect, loading, professors,
                 width: '100%',
             }}
         >
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="h5" gutterBottom sx={{ fontSize: '4vmin' }}>
         Quel professeur est l’auteur ?
         </Typography>
 
@@ -78,7 +78,7 @@ export default function InputTextField({ onProfessorSelect, loading, professors,
             <CircularProgress sx={{ my: 2 }} />
         ) : (
             <>
-            <Typography variant="h6" sx={{ mb: 3, fontStyle: 'italic' }}>
+            <Typography variant="h6" sx={{ mb: 3, fontStyle: 'italic', fontSize: '3vmin' }}>
             « {articleTitle} »
             </Typography>
 
@@ -119,7 +119,7 @@ export default function InputTextField({ onProfessorSelect, loading, professors,
             />
 
             {remainingTries > 0 && showClue && (
-                <Typography variant="body2" sx={{ mt: 2, color: "error.main" }}>
+                <Typography variant="body2" sx={{ mt: 2, color: "error.main", fontSize: '2vmin' }}>
                 Indice sur le résumé dans ({remainingTries} {remainingTries === 1 ? 'tentative' : 'tentatives'})
                 </Typography>
             )}
