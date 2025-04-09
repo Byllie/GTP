@@ -72,7 +72,6 @@ function AnimatedRoutes() {
             <Route path="/" element={<Home />} />
             <Route path="/protocoles" element={<Protocoles />} />
             <Route path="/articles" element={<Articles />} />
-            <Route path="/*" element={<NotFound />} />
           </Routes>
         </motion.div>
       </AnimatePresence>
