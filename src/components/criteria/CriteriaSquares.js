@@ -9,6 +9,7 @@ import VictoryPopup from './../popup/VictoryPopup';
 export default function CriteriaSquares({ protocol, timestamp, response_data, onPopupClose, attempts }) {
   const [visibleCount, setVisibleCount] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
+  const [showVictoryTitle, setShowVictoryTitle] = useState(false);
   const handleClosePopup = () => {
     setShowPopup(false);
     if (onPopupClose) onPopupClose(); // notifie le parent
@@ -51,6 +52,7 @@ export default function CriteriaSquares({ protocol, timestamp, response_data, on
   useEffect(() => {
     if (visibleCount === allCriteria.length && response_data.dic_comp.name === "equal") {
       setShowPopup(true);
+      setShowVictoryTitle(true);
     }
   }, [visibleCount, allCriteria.length, response_data.dic_comp.name]);
 
@@ -68,6 +70,10 @@ export default function CriteriaSquares({ protocol, timestamp, response_data, on
 
   return (
     <Box className="criteria-container">
+    {showVictoryTitle && (
+      "🎉🎉🎉🎉🎉🎉🎉🎉"
+    )}
+
     <Typography variant="subtitle1" gutterBottom className="criteria-title" />
 
     <Grid2 container spacing={2} className="criteria-grid">
@@ -94,7 +100,6 @@ export default function CriteriaSquares({ protocol, timestamp, response_data, on
     message={`Le nom du protocole correspond parfaitement !\nNombre de tentatives : ${attempts}`}
     onClose={handleClosePopup}
     />
-
     </Box>
   );
 }
