@@ -16,7 +16,7 @@ export default function GridArticles() {
     const [loading, setLoading] = useState(true);
     const [selectedProfessor, setSelectedProfessor] = useState(null);
     const [validationResults, setValidationResults] = useState([]);
-    const [remainingTries, setRemainingTries] = useState(3);
+    const [remainingTries, setRemainingTries] = useState(6);
     const [lastWrongProf, setLastWrongProf] = useState(null);
     const [showClue, setShowClue] = useState(false); // State to control clue visibility
     const [showCongratulations, setShowCongratulations] = useState(false);

@@ -6,8 +6,6 @@ import Paper from '@mui/material/Paper';
 export default function CriteriaProf({ 
     isCorrect, 
     professor, 
-    abstract, 
-    showFullAbstract 
 }) {
     return (
         <Box sx={{ mt: 2 }}>
@@ -22,17 +20,6 @@ export default function CriteriaProf({
                 <Typography color={isCorrect ? 'success.main' : 'error.main'}>
                     {isCorrect ? 'Correct!' : 'Incorrect'}
                 </Typography>
-                
-                {/* {showFullAbstract && abstract && (
-                    <>
-                        <Typography variant="body2" sx={{ mt: 1 }}>
-                            Full Abstract:
-                        </Typography>
-                        <Typography variant="body1">
-                            {abstract}
-                        </Typography>
-                    </>
-                )} */}
             </Paper>
         </Box>
     );
