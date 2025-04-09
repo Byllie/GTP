@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# 🎮 Guess the protocol
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Bienvenue sur le projet **TC Wordle Games** !  
+Ce site web regroupe **deux jeux en ligne** inspirés du célèbre Wordle, mais adaptés aux thématiques **Télécom** de l’INSA Lyon.  
+Les étudiants et passionnés y retrouveront des jeux à la fois ludiques et pédagogiques, conçus pour réviser en s’amusant.
 
-## Available Scripts
+## 🕹️ Les jeux proposés
 
-In the project directory, you can run:
+1. **Protocole réseau** :  
+   Devinez le nom d’un **protocole réseau** en un nombre limité de tentatives.  
+   Chaque proposition vous donne le caractéristiques communes de votre proposition et de la bonne réponse.
 
-### `npm start`
+2. **Articles scientifiques** :  
+   Tentez d’identifier **l’auteur** (enseignant de TC) d’un **article scientifique** proposé.  
+   Au fil de la partie, vous obtenez de nouveaux indices.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🚀 Démarrage du projet
 
-### `npm test`
+### Installation après clonage
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm install
+```
 
-### `npm run build`
+### Build pour production
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm run build
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Lancement en développement
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm run start
+```
 
-### `npm run eject`
+## 🧱 Architecture
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Le projet suit une architecture **MERN** :
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **MongoDB** : base de données pour le contenu des jeux
+- **Express.js** : API REST entre le frontend et la base de données
+- **React** : interface utilisateur
+- **Node.js** : serveur backend
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+*Ce fichier README a été partiellement généré avec l’aide d’une intelligence artificielle pour en faciliter la rédaction.*
