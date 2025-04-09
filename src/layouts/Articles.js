@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 // Style du Box pour l'image de fond
 const BackgroundBox = styled(Box)({
-  backgroundImage: `url(/test.jpg)`,
+  // backgroundImage: `url(/test.jpg)`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   minHeight: '100vh',

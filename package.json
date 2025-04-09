@@ -13,7 +13,6 @@
 		"@testing-library/react": "^16.2.0",
 		"@testing-library/user-event": "^13.5.0",
 		"axios": "^1.8.4",
-		"cors": "^2.8.5",
 		"daisyui": "^5.0.9",
 		"dotenv": "^16.4.7",
 		"express": "^4.21.2",
@@ -30,9 +29,11 @@
 	},
 	"scripts": {
 		"start": "node server.js",
+		"server": "nodemon server.js",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"testfront": "react-scripts start"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -53,8 +54,6 @@
 		]
 	},
 	"devDependencies": {
-		"concurrently": "^9.1.2",
 		"nodemon": "^3.1.9"
-	},
-	"proxy": "http://localhost:5000"
+	}
 }

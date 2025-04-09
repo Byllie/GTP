@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
+
 const BackgroundBox = styled(Box)(({ theme }) => ({
   backgroundColor: 'background', // ou une autre couleur du thème
   backgroundSize: 'cover',
