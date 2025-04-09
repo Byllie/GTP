@@ -50,15 +50,14 @@ const darkTheme = createTheme({
 });
 
 export default function InputTextField({ onProtocolSelect,protocols }) {
-  const [inputValue, setInputValue] = useState(''); // État pour la valeur du champ de texte
-  const hasFetched = useRef(false); // Réf pour suivre si le fetch a été fait
-  const [selectedValue, setSelectedValue] = useState(null); // Valeur sélectionnée
+  const [inputValue, setInputValue] = useState('');
+  const hasFetched = useRef(false);
+  const [selectedValue, setSelectedValue] = useState(null);
 
 
   const handleChange = (event, newValue) => {
     if (newValue) {
       onProtocolSelect(newValue);
-      // Option: retirer le protocole sélectionné
     }
   };
     
@@ -71,7 +70,22 @@ export default function InputTextField({ onProtocolSelect,protocols }) {
     <Autocomplete
       disablePortal
       options={protocols}
-      sx={{ width: 300, paddingTop:"5vmin" }}
+      sx={{
+        width: "100vmin",
+        height: '11vmin',
+        paddingTop: "5vmin",
+        '& .MuiInputBase-root': {
+          height: '11vmin', // hauteur du champ
+          fontSize: '4vmin', // taille du texte dans le champ
+        },
+        '& .MuiInputBase-input': {
+          fontSize: '4vmin', // taille du texte dans le champ (input lui-même)
+          padding: '2vmin',  // padding interne pour aérer un peu
+        },
+        '& .MuiFormLabel-root': {
+          fontSize: '3.5vmin', // taille du label "Entrée"
+        },
+      }}
       onChange={handleChange}
       autoHighlight={true}
       inputValue={inputValue} 
@@ -83,7 +97,6 @@ export default function InputTextField({ onProtocolSelect,protocols }) {
           {...params}
           label="Entrée"
           variant="filled"
-          // OnFocus conservé mais ne déclenchera pas de nouveau fetch
           onFocus={() => console.log("Focus - Liste déjà chargée")}
         />
       )}

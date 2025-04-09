@@ -16,7 +16,7 @@
 .Bouton-FULL {
     display: flex;
     align-items: center;
-    width: 10rem;
+    width: 20rem;
     height: inherit;
     cursor: pointer;
     transition: transform 0.2s;

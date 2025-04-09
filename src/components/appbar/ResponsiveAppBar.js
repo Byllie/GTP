@@ -74,7 +74,7 @@ export default function ResponsiveAppBar({theme}) {
                   key={page}
                   component={Link}
                   to={`/${page.toLowerCase()}`} // Redirige vers /protocoles et /articles
-                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  sx={{ my: 2, color: 'white', display: 'block', fontSize:"2vmin", marginRight:"7vmin" }}
                 >
                   {page}
                 </Button>

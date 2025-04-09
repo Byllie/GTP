@@ -80,13 +80,17 @@ export default function CriteriaSquares({ protocol, timestamp, response_data, on
 
     <Grid2 container spacing={2} className="criteria-grid">
     {allCriteria.map((criteria, index) => (
-      <Grid2 item key={index}>
+      <Grid2 item key={index} sx={{ width:"13vmin", height:"13vmin", marginRight:"2vmin"}}>
       <Paper
       className={getItemClass(index)}
       style={{
         opacity: index < visibleCount ? 1 : 0,
         backgroundColor: color[index],
-        cursor: index === 0 ? 'pointer' : 'default'
+        cursor: index === 0 ? 'pointer' : 'default',
+        fontSize: "3vmin",
+        width:"15vmin", 
+        height:"15vmin",
+        color:"#f4f6fb"
       }}
       onClick={index === 0 ? handleNameClick : undefined}
       >
