@@ -7,8 +7,6 @@ import './CriteriaSquares.css';
 import VictoryPopup from './../popup/VictoryPopup';
 import Confetti from 'react-confetti';
 
-
-
 export default function CriteriaSquares({ protocol, timestamp, response_data, onPopupClose, attempts }) {
   const [visibleCount, setVisibleCount] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
@@ -19,9 +17,26 @@ export default function CriteriaSquares({ protocol, timestamp, response_data, on
     if (onPopupClose) onPopupClose();
   };
 
-  if (!response_data || !response_data.reqName || !response_data.dic_comp) {
-    return null;
-  }
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setVisibleCount(prev => (prev >= 5 ? prev : prev + 1));
+      }, 500);
+      return () => clearInterval(interval);
+    }, []);
+
+    useEffect(() => {
+      if (response_data?.dic_comp?.name === "equal" && visibleCount === 5) {
+        setShowPopup(true);
+        setShowVictoryTitle(true);
+      }
+    }, [visibleCount, response_data]);
+
+    if (!response_data || !response_data.reqName || !response_data.dic_comp) {
+      return null;
+    }
+
+
+
 
   const allCriteria = [
     response_data.reqName.name,
@@ -46,20 +61,6 @@ export default function CriteriaSquares({ protocol, timestamp, response_data, on
     if (match === "partial") return "#FFC107";
     return "#E0E0E0";
   });
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setVisibleCount(prev => (prev >= allCriteria.length ? prev : prev + 1));
-    }, 500);
-    return () => clearInterval(interval);
-  }, [allCriteria.length]);
-
-  useEffect(() => {
-    if (visibleCount === allCriteria.length && response_data.dic_comp.name === "equal") {
-      setShowPopup(true);
-      setShowVictoryTitle(true);
-    }
-  }, [visibleCount, allCriteria.length, response_data.dic_comp.name]);
 
   const getItemClass = (index) => (index % 2 === 0 ? "criteria-item even" : "criteria-item odd");
 
