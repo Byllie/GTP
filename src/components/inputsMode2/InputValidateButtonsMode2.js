@@ -11,7 +11,7 @@ export default function InputValidateButtons({
             <Button
                 variant="contained"
                 onClick={onValidate}
-                disabled={isCorrect} // disable if the answer is correct 
+                disabled={isCorrect}
                 sx={{
                     minWidth: 120,
                     height: 40

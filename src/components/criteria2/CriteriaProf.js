@@ -1,26 +1,36 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 
-export default function CriteriaProf({ 
-    isCorrect, 
-    professor, 
-}) {
+export default function CriteriaProf({ professor, isCorrect }) {
     return (
-        <Box sx={{ mt: 2 }}>
-            <Paper elevation={2} sx={{
-                p: 2,
-                borderLeft: `4px solid ${isCorrect ? '#4CAF50' : '#F44336'}`,
-                backgroundColor: isCorrect ? 'rgba(76, 175, 80, 0.1)' : 'rgba(244, 67, 54, 0.1)'
-            }}>
-                <Typography variant="subtitle1" fontWeight="bold">
-                    {professor}
-                </Typography>
-                <Typography color={isCorrect ? 'success.main' : 'error.main'}>
-                    {isCorrect ? 'Correct!' : 'Incorrect'}
-                </Typography>
-            </Paper>
+        <Box sx={{ my: 2 }}>
+        <Paper
+        elevation={3}
+        sx={{
+            backgroundColor: isCorrect ? '#e6f4ea' : '#fcebea',
+            border: `2px solid ${isCorrect ? '#28a745' : '#dc3545'}`,
+            borderRadius: '16px',
+            padding: '1.5rem',
+            textAlign: 'center',
+            boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
+        }}
+        >
+        <Typography variant="h6" sx={{ color: '#333', mb: 1 }}>
+        {professor}
+        </Typography>
+        <Typography
+        variant="body1"
+        sx={{
+            fontWeight: 'bold',
+            color: isCorrect ? '#28a745' : '#dc3545',
+        }}
+        >
+        {isCorrect ? 'Bonne réponse' : 'Mauvaise réponse'}
+        </Typography>
+        </Paper>
         </Box>
     );
 }
+
