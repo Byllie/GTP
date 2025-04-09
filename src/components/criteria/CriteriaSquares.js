@@ -13,11 +13,15 @@ export default function CriteriaSquares({ protocol, timestamp, response_data, on
   const [visibleCount, setVisibleCount] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
   const [showVictoryTitle, setShowVictoryTitle] = useState(false);
+
   const handleClosePopup = () => {
     setShowPopup(false);
-    if (onPopupClose) onPopupClose(); // notifie le parent
+    if (onPopupClose) onPopupClose();
   };
 
+  if (!response_data || !response_data.reqName || !response_data.dic_comp) {
+    return null;
+  }
 
   const allCriteria = [
     response_data.reqName.name,
@@ -40,15 +44,13 @@ export default function CriteriaSquares({ protocol, timestamp, response_data, on
     if (["different", "lower", "higher"].includes(match)) return "#FF5252";
     if (match === "equal") return "#28fa6a";
     if (match === "partial") return "#FFC107";
-    return "#E0E0E0"; // fallback
+    return "#E0E0E0";
   });
 
-  // Animation
   useEffect(() => {
     const interval = setInterval(() => {
-      setVisibleCount(prev => prev >= allCriteria.length ? prev : prev + 1);
+      setVisibleCount(prev => (prev >= allCriteria.length ? prev : prev + 1));
     }, 500);
-
     return () => clearInterval(interval);
   }, [allCriteria.length]);
 
@@ -59,53 +61,47 @@ export default function CriteriaSquares({ protocol, timestamp, response_data, on
     }
   }, [visibleCount, allCriteria.length, response_data.dic_comp.name]);
 
-  const getItemClass = (index) => {
-    let baseClass = 'criteria-item';
-    return index % 2 === 0 ? `${baseClass} even` : `${baseClass} odd`;
-  };
+  const getItemClass = (index) => (index % 2 === 0 ? "criteria-item even" : "criteria-item odd");
 
   const cours = response_data.reqName.cours;
-  const coursDisplay = Array.isArray(cours) ? cours.join(' ') : cours;
+  const coursDisplay = Array.isArray(cours) ? cours.join(" ") : cours;
 
   const handleNameClick = () => {
-    window.open(response_data.reqName.wiki, '_blank');
+    window.open(response_data.reqName.wiki, "_blank");
   };
-    return (
+
+  return (
     <Box className="criteria-container">
-    {showVictoryTitle && (
-      <Confetti className="confetti"/>
-    )}
-
-    <Typography variant="subtitle1" gutterBottom className="criteria-title" />
-
-    <Grid2 container spacing={2} className="criteria-grid">
-    {allCriteria.map((criteria, index) => (
-      <Grid2 item key={index} sx={{ width:"13vmin", height:"13vmin", marginRight:"2vmin"}}>
-      <Paper
-      className={getItemClass(index)}
-      style={{
-        opacity: index < visibleCount ? 1 : 0,
-        backgroundColor: color[index],
-        cursor: index === 0 ? 'pointer' : 'default',
-        fontSize: "3vmin",
-        width:"15vmin", 
-        height:"15vmin",
-        color:"#f4f6fb"
-      }}
-      onClick={index === 0 ? handleNameClick : undefined}
-      >
-      {matches[index] === "higher" ? "⬆️ " : matches[index] === "lower" ? "⬇️ " : ""}
-      {index === 4 ? coursDisplay : criteria}
-      </Paper>
+      {showVictoryTitle && <Confetti className="confetti" />}
+      <Typography variant="subtitle1" gutterBottom className="criteria-title" />
+      <Grid2 container spacing={2} className="criteria-grid">
+        {allCriteria.map((criteria, index) => (
+          <Grid2 item key={index} sx={{ width: "13vmin", height: "13vmin", marginRight: "2vmin" }}>
+            <Paper
+              className={getItemClass(index)}
+              style={{
+                opacity: index < visibleCount ? 1 : 0,
+                backgroundColor: color[index],
+                cursor: index === 0 ? "pointer" : "default",
+                fontSize: "3vmin",
+                width: "15vmin",
+                height: "15vmin",
+                color: "#f4f6fb"
+              }}
+              onClick={index === 0 ? handleNameClick : undefined}
+            >
+              {matches[index] === "higher" ? "⬆️ " : matches[index] === "lower" ? "⬇️ " : ""}
+              {index === 4 ? coursDisplay : criteria}
+            </Paper>
+          </Grid2>
+        ))}
       </Grid2>
-    ))}
-    </Grid2>
 
-    <VictoryPopup
-    open={showPopup}
-    message={`Le nom du protocole correspond parfaitement !\nNombre de tentatives : ${attempts}`}
-    onClose={handleClosePopup}
-    />
+      <VictoryPopup
+        open={showPopup}
+        message={`Le nom du protocole correspond parfaitement !\nNombre de tentatives : ${attempts}`}
+        onClose={handleClosePopup}
+      />
     </Box>
   );
 }
