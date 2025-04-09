@@ -11,11 +11,13 @@
 
 .header-container {
   margin-bottom: 3%;
+  width: 100%;
+  height: auto;
 }
 
 .logo-image {
-  width: 100%;
-  max-width: 400px;
+  width: 90vmin;
+  max-width: 900px;
   height: auto;
   margin: 0 auto 2%;
   display: block;
@@ -23,7 +25,7 @@
 
 
 .subtitle {
-  font-size: 2vw;
+  font-size: 7vmin;
   color: white;
   font-family: 'Georgia', serif;
   font-weight: 400;
@@ -33,10 +35,10 @@
 /* RESPONSIVE ADJUSTMENTS */
 @media screen and (max-width: 800px) {
   .subtitle {
-    font-size: 18px; 
+    font-size: 7vmin; 
   }
   .logo-image {
-    width: 90%;
+    width: 90vmin;
   }
 
   .header-container {

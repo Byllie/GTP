@@ -12,11 +12,14 @@ export default function InputTextField({ onProfessorSelect, loading, professors,
                 backgroundColor: 'white',
                 borderRadius: '12px',
                 padding: '2rem',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                marginTop: '10px',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
                 textAlign: 'center',
+                maxWidth: '600px',
+                marginLeft: 'auto',
+                marginRight:'auto'
                 width: '100%',
                 maxWidth: 600,
-                margin: '0 auto',
             }}
         >
             <Typography variant="h5" gutterBottom>

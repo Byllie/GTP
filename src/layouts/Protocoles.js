@@ -14,9 +14,6 @@ const BackgroundBox = styled(Box)(({ theme }) => ({
   overflow: 'auto',
   backgroundAttachment: 'fixed', 
   paddingTop: '64px', 
-
-
-
 }));
 
 const darkTheme = createTheme({

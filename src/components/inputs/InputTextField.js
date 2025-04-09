@@ -71,7 +71,7 @@ export default function InputTextField({ onProtocolSelect,protocols }) {
     <Autocomplete
       disablePortal
       options={protocols}
-      sx={{ width: 300 }}
+      sx={{ width: 300, paddingTop:"5vmin" }}
       onChange={handleChange}
       autoHighlight={true}
       inputValue={inputValue} 

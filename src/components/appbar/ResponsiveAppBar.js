@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from "react-router-dom";
 import { ThemeProvider } from '@mui/material/styles';
+import './ResponsiveAppBar.css';
 
 const pages = ['Protocoles', 'Articles'];
 
@@ -30,10 +31,10 @@ export default function ResponsiveAppBar({theme}) {
 
   return (
     <ThemeProvider theme={theme}>
-    <AppBar position="static" color="primary">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+    <AppBar className="APPBar-bg" position="static" color="primary">
+      <Container className="APPBar-bg" maxWidth="xl">
+        <Toolbar disableGutters className="APPBar-bg">
+          <Box className='Bouton-SMALL'>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -67,26 +68,7 @@ export default function ResponsiveAppBar({theme}) {
               ))}
             </Menu>
           </Box>
-          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component={Link} // Utilise Link pour la version mobile
-            to="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            GTP
-          </Typography> */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box className='Bouton-FULL'>
               {pages.map((page) => (
                 <Button
                   key={page}
@@ -99,8 +81,8 @@ export default function ResponsiveAppBar({theme}) {
               ))}
           </Box>
           <Box sx={{ width:'100%', height:'auto' }} />
-          <Box component="a" href="/" sx={{ display: { xs: 'flex', md: 'flex' }, ml:2 }}>
-            <img src="/titre_crop.png" alt="Logo" style={{ width: '100%', height: 'auto', marginLeft: '1%' }} />
+          <Box component="a" href="/" className='Logo-GTP-Bar'>
+            <img src="/titre_crop.png" alt="Logo"/>
           </Box>
         </Toolbar>
       </Container>
