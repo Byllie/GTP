@@ -1,10 +1,10 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import GridArticles from "../components/grid2/GridArticles";
+import GridArticles from "../components/mode2/grid2/GridArticles";
 
 const BackgroundBox = styled(Box)({
-  backgroundImage: `url(/test.jpg)`,
+  // backgroundImage: `url(/test.jpg)`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   minHeight: '100vh',

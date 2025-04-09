@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import BasicGrid from "../components/grid/BasicGrid";
+import BasicGrid from "../components/mode1/grid/BasicGrid";
 
 const BackgroundBox = styled(Box)({
   backgroundImage: `url(/test.jpg)`,

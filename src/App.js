@@ -10,7 +10,7 @@ import { useLocation } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 
 const BackgroundBox = styled(Box)({
-  backgroundImage: `url(/test.jpg)`,
+  // backgroundImage: `url(/test.jpg)`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   height: '100vh',
