@@ -91,12 +91,6 @@ export default function BasicGrid() {
       />
       </Grid>
 
-
-      </>
-    )}
-
-    </Grid>
-
     {/* Liste des résultats */}
     {squareRows.map((row) => (
       <CriteriaSquares
