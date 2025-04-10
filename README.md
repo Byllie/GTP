@@ -48,4 +48,4 @@ Le projet suit une architecture **MERN** :
 ---
 
 *Ce fichier README a été partiellement généré avec l’aide d’une intelligence artificielle pour en faciliter la rédaction.*
-Projet réalisé par Enzo (Le destructeur de RAM), Louis (le maîre des JSON), Trung (le GOAT), William (l'irlandais), Benjamin (Mr le président), et Gwendal (Grand Marabou d'AWS)
+- Projet réalisé par Enzo (Le destructeur de RAM), Louis (le maîre des JSON), Trung (le GOAT), William (l'irlandais), Benjamin (Mr le président), et Gwendal (Grand Marabou d'AWS)
